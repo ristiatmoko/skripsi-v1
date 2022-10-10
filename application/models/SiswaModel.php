@@ -5,7 +5,7 @@ class SiswaModel extends CI_Model {
     
     // datatables
     function json() {
-        $this->datatables->select('a.nisn, a.nama_lengkap, a.tanggal_lahir, a.jenis_kelamin, a.alamat, a.asal_sekolah');
+        $this->datatables->select('a.nisn, a.nama_lengkap, a.jenis_kelamin');
         $this->datatables->from('siswa as a');
         //add this line for join
         $this->datatables->add_column('action',anchor(site_url('controllerSiswa/edit_siswa/$1'),'<i class="fas fa-edit"></i> Edit','class="btn btn-success btn-block" title="Edit Data"')." ".anchor(site_url('controllerSiswa/hapus_siswa/$1'),'<i class="fa fa-archive"></i> Hapus','data-nama_siswa="$2" class="btn btn-danger hapus btn-block" title="Hapus Data"'), 'nisn,nama_lengkap');

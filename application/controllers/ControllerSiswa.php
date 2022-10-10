@@ -38,10 +38,10 @@ class ControllerSiswa extends CI_Controller
             'action'        => site_url("controllerSiswa/insert_siswa_action"),
             'nisn'          => set_value("nisn"),
             'nama_lengkap'  => set_value("nama_lengkap"),
-            'tanggal_lahir' => set_value("tanggal_lahir"),
+            // 'tanggal_lahir' => set_value("tanggal_lahir"),
             'jenis_kelamin' => set_value("jenis_kelamin"),
-            'alamat'        => set_value("alamat"),
-            'asal_sekolah'  => set_value("asal_sekolah"),
+            // 'alamat'        => set_value("alamat"),
+            // 'asal_sekolah'  => set_value("asal_sekolah"),
         ];
         $this->load->view('header');
         $this->load->view('siswa/formSiswa', $data);
@@ -52,9 +52,9 @@ class ControllerSiswa extends CI_Controller
     {
         $this->form_validation->set_rules('nisn', 'NISN', 'required');
         $this->form_validation->set_rules('nama_lengkap', 'Nama lengkap', 'required');
-        $this->form_validation->set_rules('tanggal_lahir', 'Tanggal Lahir', 'required');
+        // $this->form_validation->set_rules('tanggal_lahir', 'Tanggal Lahir', 'required');
         $this->form_validation->set_rules('jenis_kelamin', 'Jenis kelamin', 'required');
-        $this->form_validation->set_rules('alamat', 'Alamat', 'required');
+        // $this->form_validation->set_rules('alamat', 'Alamat', 'required');
         $this->form_validation->set_message('required', '* {field} Harus diisi');
 
         if ($this->form_validation->run() == FALSE) {
@@ -71,10 +71,10 @@ class ControllerSiswa extends CI_Controller
             $data = [
                 'nisn'            => $this->input->post("nisn"),
                 'nama_lengkap'    => $this->input->post("nama_lengkap"),
-                'tanggal_lahir'   => date('Y-m-d', strtotime($this->input->post("tanggal_lahir"))),
+                // 'tanggal_lahir'   => date('Y-m-d', strtotime($this->input->post("tanggal_lahir"))),
                 'jenis_kelamin'   => $this->input->post("jenis_kelamin"),
-                'alamat'          => $this->input->post("alamat"),
-                'asal_sekolah'    => $this->input->post("asal_sekolah"),
+                // 'alamat'          => $this->input->post("alamat"),
+                // 'asal_sekolah'    => $this->input->post("asal_sekolah"),
             ];
 
             $this->SiswaModel->insert_siswa($data);

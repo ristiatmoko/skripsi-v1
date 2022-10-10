@@ -17,12 +17,12 @@
                                 <thead>
                                     <tr>
                                         <th width="5%">No</th>
-                                        <th>NISN</th>
-                                        <th>Nama</th>
-                                        <th>Tanggal Lahir</th>
-                                        <th>Jenis Kelamin</th>
-                                        <th>Alamat</th>
-                                        <th>Asal Sekolah</th>
+                                        <th>No Punggung</th>
+                                        <th>Nama Pemain</th>
+                                        <!-- <th>Tanggal Lahir</th> -->
+                                        <th>Posisi</th>
+                                        <!-- <th>Alamat</th>
+                                        <th>Asal Sekolah</th> -->
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -75,18 +75,18 @@
                 {
                     "data": "nama_lengkap"
                 },
-                {
-                    "data": "tanggal_lahir"
-                },
+                // {
+                //     "data": "tanggal_lahir"
+                // },
                 {
                     "data": "jenis_kelamin"
                 },
-                {
-                    "data": "alamat"
-                },
-                {
-                    "data": "asal_sekolah"
-                },
+                // {
+                //     "data": "alamat"
+                // },
+                // {
+                //     "data": "asal_sekolah"
+                // },
                 {
                     "data": "action",
                     "orderable": false,

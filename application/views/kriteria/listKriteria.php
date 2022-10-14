@@ -8,6 +8,9 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
+                        <div class="form-group">
+                            <a type="button" href="<?= site_url("controllerKriteria/insert_kriteria"); ?>" class="btn btn-success"> <i class="fa fa-plus"></i> Tambah</a>
+                        </div>
                         <div class="table-responsive">
                             <table id="mytable" class="table table-striped">
                                 <thead>
@@ -15,7 +18,7 @@
                                         <th width="5%">No</th>
                                         <th>Nama Kriteria</th>
                                         <th>Tipe</th>
-                                        <!-- <th>Aksi</th> -->
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -60,10 +63,13 @@
                     "className": "text-center"
                 },
                 {
-                    "data": "nama_kriteria"
+                    "data": "kriteria_concat"
                 },
                 {
                     "data": "tipe"
+                },
+                {
+                    "data": "action"
                 },
                 
             ],

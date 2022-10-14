@@ -32,10 +32,12 @@ class ControllerSiswa extends CI_Controller
     }
 
     public function insert_siswa()
-    {
+    {   
+        $slug = url_title(set_value("nisn"), '-', true);
         $data = [
             'aksi'          => 'tambah',
             'action'        => site_url("controllerSiswa/insert_siswa_action"),
+            'slug'          => $slug,
             'nisn'          => set_value("nisn"),
             'nama_lengkap'  => set_value("nama_lengkap"),
             // 'tanggal_lahir' => set_value("tanggal_lahir"),
@@ -84,6 +86,13 @@ class ControllerSiswa extends CI_Controller
         }
     }
 
+    public function detail_siswa($nisn)
+    {
+        $this->load->view('header');
+        $this->load->view('siswa/detailSiswa');
+        $this->load->view('footer');
+    }
+
     public function edit_siswa($nisn)
     {
         $data_siswa = $this->SiswaModel->get_by_id($nisn);
@@ -92,10 +101,10 @@ class ControllerSiswa extends CI_Controller
             'action'        => site_url("controllerSiswa/edit_siswa_action"),
             'nisn'           => set_value("nisn", $data_siswa->nisn),
             'nama_lengkap'  => set_value("nama_lengkap", $data_siswa->nama_lengkap),
-            'tanggal_lahir' => set_value("tanggal_lahir", $data_siswa->tanggal_lahir),
+            // 'tanggal_lahir' => set_value("tanggal_lahir", $data_siswa->tanggal_lahir),
             'jenis_kelamin' => set_value("jenis_kelamin", $data_siswa->jenis_kelamin),
-            'alamat'        => set_value("alamat", $data_siswa->alamat),
-            'asal_sekolah'  => set_value("alamat", $data_siswa->asal_sekolah),
+            // 'alamat'        => set_value("alamat", $data_siswa->alamat),
+            // 'asal_sekolah'  => set_value("alamat", $data_siswa->asal_sekolah),
         ];
         $this->load->view('header');
         $this->load->view('siswa/formSiswa', $data);
@@ -108,10 +117,10 @@ class ControllerSiswa extends CI_Controller
 
         $data = [
             'nama_lengkap'    => $this->input->post("nama_lengkap"),
-            'tanggal_lahir'   => date('Y-m-d', strtotime($this->input->post("tanggal_lahir"))),
+            // 'tanggal_lahir'   => date('Y-m-d', strtotime($this->input->post("tanggal_lahir"))),
             'jenis_kelamin'   => $this->input->post("jenis_kelamin"),
-            'alamat'          => $this->input->post("alamat"),
-            'asal_sekolah'    => $this->input->post("asal_sekolah"),
+            // 'alamat'          => $this->input->post("alamat"),
+            // 'asal_sekolah'    => $this->input->post("asal_sekolah"),
         ];
 
         $this->SiswaModel->update_siswa($nisn, $data);

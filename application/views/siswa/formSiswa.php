@@ -48,6 +48,30 @@
                                         <span class="text-danger"><?= form_error('jenis_kelamin') ?></span>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label class="col-md-12" for="bdate">Tinggi Badan</span>
+                                    </label>
+                                    <div class="col-md-12">
+                                        <input type="number" id="tinggi_badan" name="tinggi_badan" value="<?= $tinggi_badan; ?>" class="form-control" placeholder="Ketikkan Tinggi Badan">
+                                        <span class="text-danger"><?= form_error('tinggi_badan') ?></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12" for="bdate">Berat Badan</span>
+                                    </label>
+                                    <div class="col-md-12">
+                                        <input type="number" id="berat_badan" name="berat_badan" value="<?= $berat_badan; ?>" class="form-control" placeholder="Ketikkan Berat Badan">
+                                        <span class="text-danger"><?= form_error('berat_badan') ?></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12" for="bdate">Umur</span>
+                                    </label>
+                                    <div class="col-md-12">
+                                        <input type="number" id="umur" name="umur" value="<?= $umur; ?>" class="form-control" placeholder="Ketikkan Umur">
+                                        <span class="text-danger"><?= form_error('umur') ?></span>
+                                    </div>
+                                </div>
                                 <div class="col-md-12">
                                     <button type="submit" class="btn btn-primary waves-effect waves-light m-r-10">Simpan</button>
                                     <a type="button" href="<?= site_url('controllerSiswa'); ?>" class="btn btn-danger waves-effect waves-light">Cancel</a>

@@ -1,8 +1,8 @@
-<!-- <div class="wrapper"> -->
-<!-- <div class="container-fluid"><section class="content"> -->
+<div class="wrapper">
+<div class="container-fluid"><section class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-xl-12">
+            <div class="col-12">
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Data Siswa</h3>
@@ -19,11 +19,11 @@
                                         <th width="5%">No</th>
                                         <th>No Punggung</th>
                                         <th>Nama Pemain</th>
+                                        <!-- <th>Tanggal Lahir</th> -->
                                         <th>Posisi</th>
+                                        <!-- <th>Alamat</th>
+                                        <th>Asal Sekolah</th> -->
                                         <th>Aksi</th>
-                                        <th>TB</th>
-                                        <th>BB</th>
-                                        <th>Umur</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -35,9 +35,9 @@
             </div>
         </div>
     </div>
-<!-- </section>
+</section>
 </div>
-</div> -->
+</div>
 <script src="<?= base_url('vendor') ?>/plugins/jquery/jquery.min.js"></script>
 
 <script type="text/javascript">
@@ -75,19 +75,18 @@
                 {
                     "data": "nama_lengkap"
                 },
+                // {
+                //     "data": "tanggal_lahir"
+                // },
                 {
                     "data": "jenis_kelamin"
                 },
-               
-                {
-                    "data": "tinggi_badan"
-                },
-                {
-                    "data": "berat_badan"
-                },
-                {
-                    "data": "umur"
-                },
+                // {
+                //     "data": "alamat"
+                // },
+                // {
+                //     "data": "asal_sekolah"
+                // },
                 {
                     "data": "action",
                     "orderable": false,

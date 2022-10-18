@@ -40,10 +40,10 @@ class ControllerSiswa extends CI_Controller
             'slug'          => $slug,
             'nisn'          => set_value("nisn"),
             'nama_lengkap'  => set_value("nama_lengkap"),
-            // 'tanggal_lahir' => set_value("tanggal_lahir"),
             'jenis_kelamin' => set_value("jenis_kelamin"),
-            // 'alamat'        => set_value("alamat"),
-            // 'asal_sekolah'  => set_value("asal_sekolah"),
+            'tinggi_badan'  => set_value("tinggi_badan"),
+            'berat_badan'   => set_value("berat_badan"),
+            'umur'          => set_value("umur"),
         ];
         $this->load->view('header');
         $this->load->view('siswa/formSiswa', $data);
@@ -54,9 +54,10 @@ class ControllerSiswa extends CI_Controller
     {
         $this->form_validation->set_rules('nisn', 'NISN', 'required');
         $this->form_validation->set_rules('nama_lengkap', 'Nama lengkap', 'required');
-        // $this->form_validation->set_rules('tanggal_lahir', 'Tanggal Lahir', 'required');
         $this->form_validation->set_rules('jenis_kelamin', 'Jenis kelamin', 'required');
-        // $this->form_validation->set_rules('alamat', 'Alamat', 'required');
+        $this->form_validation->set_rules('tinggi_badan', 'Tinggi Badan', 'required');
+        $this->form_validation->set_rules('berat_badan', 'Berat Badan', 'required');
+        $this->form_validation->set_rules('umur', 'Umur', 'required');
         $this->form_validation->set_message('required', '* {field} Harus diisi');
 
         if ($this->form_validation->run() == FALSE) {
@@ -71,12 +72,13 @@ class ControllerSiswa extends CI_Controller
             }
 
             $data = [
-                'nisn'            => $this->input->post("nisn"),
-                'nama_lengkap'    => $this->input->post("nama_lengkap"),
+                'nisn'              => $this->input->post("nisn"),
+                'nama_lengkap'      => $this->input->post("nama_lengkap"),
                 // 'tanggal_lahir'   => date('Y-m-d', strtotime($this->input->post("tanggal_lahir"))),
-                'jenis_kelamin'   => $this->input->post("jenis_kelamin"),
-                // 'alamat'          => $this->input->post("alamat"),
-                // 'asal_sekolah'    => $this->input->post("asal_sekolah"),
+                'jenis_kelamin'     => $this->input->post("jenis_kelamin"),
+                'tinggi_badan'      => $this->input->post("tinggi_badan"),
+                'berat_badan'       => $this->input->post("berat_badan"),
+                'umur'              => $this->input->post("umur"),
             ];
 
             $this->SiswaModel->insert_siswa($data);
@@ -86,10 +88,10 @@ class ControllerSiswa extends CI_Controller
         }
     }
 
-    public function detail_siswa($nisn)
+    public function statistik_pemain($nisn)
     {
         $this->load->view('header');
-        $this->load->view('siswa/detailSiswa');
+        $this->load->view('siswa/statistikPemain');
         $this->load->view('footer');
     }
 

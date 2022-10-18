@@ -1,39 +1,26 @@
-<div class="wrapper">
-<div class="container-fluid"><section class="content">
+<!-- <div class="wrapper"> -->
+<!-- <div class="container-fluid"><section class="content"> -->
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12">
+            <div class="col-xl-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Data Statistik</h3>
+                        <h3 class="card-title">Data Pertandingan</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <!--<div class="form-group">-->
-                        <!--    <a type="button" href="--><?//= site_url("controllerSiswa/insert_siswa"); ?><!--" class="btn btn-success"> <i class="fa fa-plus"></i> Tambah</a>-->
-                        <!--</div>-->
+                        <div class="form-group">
+                            <a type="button" href="<?= site_url("ControllerPertandingan/insert_pertandingan"); ?>" class="btn btn-success"> <i class="fa fa-plus"></i> Tambah</a>
+                        </div>
                         <div class="table-responsive">
                             <table id="mytable_siswa" class="table table-striped">
                                 <thead>
                                     <tr>
                                         <th width="5%">No</th>
-                                        <th>No Punggung</th>
-                                        <th>Nama Pemain</th>
-                                        <th>Posisi</th>
-                                        <th>Umur</th>
-                                        <th>TB</th>
-                                        <th>BB</th>
-                                        <th>Gol</th>
-                                        <th>Assist</th>
-                                        <th>Save</th>
-                                        <th>Clean</th>
-                                        <th>Main</th>
-                                        <th>Merah</th>
-                                        <th>Kuning</th>
-                                        <th>Bunuhdiri</th>
-                                        <th>Motm</th>
+                                        <th>Musim</th>
+                                        <th>Versus</th>
+                                        <th>Tanggal</th>
                                         <th>Aksi</th>
-
                                     </tr>
                                 </thead>
                             </table>
@@ -45,9 +32,9 @@
             </div>
         </div>
     </div>
-</section>
+<!-- </section>
 </div>
-</div>
+</div> -->
 <script src="<?= base_url('vendor') ?>/plugins/jquery/jquery.min.js"></script>
 
 <script type="text/javascript">
@@ -85,15 +72,10 @@
                 {
                     "data": "nama_lengkap"
                 },
-                // {
-                //     "data": "tanggal_lahir"
-                // },
                 {
                     "data": "jenis_kelamin"
                 },
-                {
-                    "data": "umur"
-                },
+               
                 {
                     "data": "tinggi_badan"
                 },
@@ -101,39 +83,8 @@
                     "data": "berat_badan"
                 },
                 {
-                    "data": "gol"
+                    "data": "umur"
                 },
-                {
-                    "data": "assist"
-                },
-                {
-                    "data": "save"
-                },
-                {
-                    "data": "cleansheet"
-                },
-                {
-                    "data": "main"
-                },
-                {
-                    "data": "kartu_merah"
-                },
-                {
-                    "data": "kartu_kuning"
-                },
-                {
-                    "data": "bunuhdiri"
-                },
-                {
-                    "data": "motm"
-                },
-
-                // {
-                //     "data": "alamat"
-                // },
-                // {
-                //     "data": "asal_sekolah"
-                // },
                 {
                     "data": "action",
                     "orderable": false,

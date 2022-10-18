@@ -232,36 +232,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                         <li class="has-submenu">
                             <a href="<?= site_url('ControllerSiswa') ?>"><i class="dripicons-article"></i>Data Siswa</a>
-                            <ul class="submenu megamenu">
-                                <li>
-                                    <ul>
-                                        <li><a href="ui-alerts.html">Alerts</a></li>
-                                        <li><a href="ui-buttons.html">Buttons</a></li>
-                                        <li><a href="ui-badge.html">Badge</a></li>
-                                        <li><a href="ui-cards.html">Cards</a></li>
-                                        <li><a href="ui-dropdowns.html">Dropdowns</a></li>
-                                        <li><a href="ui-tabs-accordions.html">Tabs & Accordions</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <ul>
-                                        <li><a href="ui-modals.html">Modals</a></li>
-                                        <li><a href="ui-images.html">Images</a></li>
-                                        <li><a href="ui-progressbars.html">Progress Bars</a></li>
-                                        <li><a href="ui-navs.html">Navs</a></li>
-                                        <li><a href="ui-pagination.html">Pagination</a></li>
-                                        <li><a href="ui-popover-tooltips.html">Popover & Tooltips</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <ul>
-                                        <li><a href="ui-carousel.html">Carousel</a></li>
-                                        <li><a href="ui-video.html">Video</a></li>
-                                        <li><a href="ui-typography.html">Typography</a></li>
-                                        <li><a href="ui-grid.html">Grid</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
+                        </li>
+
+                        <li class="has-submenu">
+                            <a href="<?= site_url('ControllerMusim') ?>"><i class="dripicons-article"></i>Data Musim</a>
+                        </li>
+
+                        <li class="has-submenu">
+                            <a href="<?= site_url('ControllerPertandingan') ?>"><i class="dripicons-article"></i>Data Pertandingan</a>
                         </li>
 
                         <li class="has-submenu">

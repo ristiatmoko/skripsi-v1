@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.3
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 18, 2022 at 12:40 PM
--- Server version: 5.7.33
--- PHP Version: 7.4.19
+-- Generation Time: Oct 18, 2022 at 06:16 PM
+-- Server version: 8.0.25
+-- PHP Version: 7.4.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,10 +28,10 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `bobot` (
-  `id_bobot` int(11) NOT NULL,
+  `id_bobot` int NOT NULL,
   `tingkat_kepentingan` varchar(200) NOT NULL,
-  `nilai_bobot` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `nilai_bobot` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `bobot`
@@ -51,11 +51,11 @@ INSERT INTO `bobot` (`id_bobot`, `tingkat_kepentingan`, `nilai_bobot`) VALUES
 --
 
 CREATE TABLE `hasil` (
-  `id_hasil` int(11) NOT NULL,
+  `id_hasil` int NOT NULL,
   `tanggal` datetime NOT NULL,
   `nisn` varchar(200) NOT NULL,
   `rekomendasi_jurusan` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -64,10 +64,10 @@ CREATE TABLE `hasil` (
 --
 
 CREATE TABLE `jurusan` (
-  `id_alternatif` int(11) NOT NULL,
+  `id_alternatif` int NOT NULL,
   `kode_jurusan` varchar(100) NOT NULL,
   `jurusan` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `jurusan`
@@ -84,11 +84,11 @@ INSERT INTO `jurusan` (`id_alternatif`, `kode_jurusan`, `jurusan`) VALUES
 --
 
 CREATE TABLE `kriteria` (
-  `id_kriteria` int(11) NOT NULL,
+  `id_kriteria` int NOT NULL,
   `bobot_preferensi` varchar(2) NOT NULL,
   `nama_kriteria` varchar(200) NOT NULL,
   `tipe` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `kriteria`
@@ -107,11 +107,42 @@ INSERT INTO `kriteria` (`id_kriteria`, `bobot_preferensi`, `nama_kriteria`, `tip
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `musim`
+--
+
+CREATE TABLE `musim` (
+  `id_musim` int NOT NULL,
+  `musim` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `musim`
+--
+
+INSERT INTO `musim` (`id_musim`, `musim`) VALUES
+(2, 2023);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pertandingan`
+--
+
+CREATE TABLE `pertandingan` (
+  `id_pertandingan` int NOT NULL,
+  `id_musim` int NOT NULL,
+  `versus` int NOT NULL,
+  `tanggal` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `proses_hitung`
 --
 
 CREATE TABLE `proses_hitung` (
-  `id_proses_hitung` int(11) NOT NULL,
+  `id_proses_hitung` int NOT NULL,
   `nisn` varchar(200) NOT NULL,
   `kode_jurusan` varchar(20) NOT NULL,
   `w1` varchar(10) NOT NULL,
@@ -120,7 +151,7 @@ CREATE TABLE `proses_hitung` (
   `w4` varchar(10) NOT NULL,
   `s` varchar(10) NOT NULL,
   `v` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `proses_hitung`
@@ -195,14 +226,14 @@ INSERT INTO `proses_hitung` (`id_proses_hitung`, `nisn`, `kode_jurusan`, `w1`, `
 --
 
 CREATE TABLE `siswa` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `slug` varchar(255) NOT NULL,
-  `nisn` int(50) NOT NULL,
+  `nisn` int NOT NULL,
   `nama_lengkap` varchar(250) NOT NULL,
   `jenis_kelamin` varchar(20) NOT NULL,
-  `tinggi_badan` int(50) NOT NULL,
-  `berat_badan` int(50) NOT NULL,
-  `umur` int(50) NOT NULL
+  `tinggi_badan` int NOT NULL,
+  `berat_badan` int NOT NULL,
+  `umur` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -217,17 +248,38 @@ INSERT INTO `siswa` (`id`, `slug`, `nisn`, `nama_lengkap`, `jenis_kelamin`, `tin
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `statistik`
+--
+
+CREATE TABLE `statistik` (
+  `id_statistik` int NOT NULL,
+  `id_pemain` int NOT NULL,
+  `id_pertandingan` int NOT NULL,
+  `gol` int NOT NULL,
+  `assist` int NOT NULL,
+  `save` int NOT NULL,
+  `cleansheet` int NOT NULL,
+  `main` int NOT NULL,
+  `kartu_merah` int NOT NULL,
+  `kartu_kuning` int NOT NULL,
+  `bunuhdiri` int NOT NULL,
+  `motm` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `sub_kriteria`
 --
 
 CREATE TABLE `sub_kriteria` (
-  `id_sub_kriteria` int(11) NOT NULL,
+  `id_sub_kriteria` int NOT NULL,
   `kode_jurusan` varchar(100) NOT NULL,
   `c1` varchar(10) NOT NULL,
   `c2` varchar(10) NOT NULL,
   `c3` varchar(10) NOT NULL,
   `c4` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `sub_kriteria`
@@ -244,12 +296,12 @@ INSERT INTO `sub_kriteria` (`id_sub_kriteria`, `kode_jurusan`, `c1`, `c2`, `c3`,
 --
 
 CREATE TABLE `user` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `username` varchar(100) NOT NULL,
   `password` varchar(255) NOT NULL,
   `level` varchar(20) DEFAULT NULL,
   `created_date` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `user`
@@ -287,6 +339,19 @@ ALTER TABLE `kriteria`
   ADD PRIMARY KEY (`id_kriteria`);
 
 --
+-- Indexes for table `musim`
+--
+ALTER TABLE `musim`
+  ADD PRIMARY KEY (`id_musim`);
+
+--
+-- Indexes for table `pertandingan`
+--
+ALTER TABLE `pertandingan`
+  ADD PRIMARY KEY (`id_pertandingan`),
+  ADD KEY `id_musim` (`id_musim`);
+
+--
 -- Indexes for table `proses_hitung`
 --
 ALTER TABLE `proses_hitung`
@@ -297,6 +362,14 @@ ALTER TABLE `proses_hitung`
 --
 ALTER TABLE `siswa`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `statistik`
+--
+ALTER TABLE `statistik`
+  ADD PRIMARY KEY (`id_statistik`),
+  ADD KEY `id_pemain` (`id_pemain`),
+  ADD KEY `id_pertandingan` (`id_pertandingan`);
 
 --
 -- Indexes for table `sub_kriteria`
@@ -318,49 +391,84 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `bobot`
 --
 ALTER TABLE `bobot`
-  MODIFY `id_bobot` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_bobot` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `hasil`
 --
 ALTER TABLE `hasil`
-  MODIFY `id_hasil` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_hasil` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `jurusan`
 --
 ALTER TABLE `jurusan`
-  MODIFY `id_alternatif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_alternatif` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `kriteria`
 --
 ALTER TABLE `kriteria`
-  MODIFY `id_kriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_kriteria` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `musim`
+--
+ALTER TABLE `musim`
+  MODIFY `id_musim` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `pertandingan`
+--
+ALTER TABLE `pertandingan`
+  MODIFY `id_pertandingan` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `proses_hitung`
 --
 ALTER TABLE `proses_hitung`
-  MODIFY `id_proses_hitung` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+  MODIFY `id_proses_hitung` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 
 --
 -- AUTO_INCREMENT for table `siswa`
 --
 ALTER TABLE `siswa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `statistik`
+--
+ALTER TABLE `statistik`
+  MODIFY `id_statistik` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `sub_kriteria`
 --
 ALTER TABLE `sub_kriteria`
-  MODIFY `id_sub_kriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_sub_kriteria` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `pertandingan`
+--
+ALTER TABLE `pertandingan`
+  ADD CONSTRAINT `pertandingan_ibfk_1` FOREIGN KEY (`id_musim`) REFERENCES `musim` (`id_musim`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `statistik`
+--
+ALTER TABLE `statistik`
+  ADD CONSTRAINT `statistik_ibfk_1` FOREIGN KEY (`id_pemain`) REFERENCES `siswa` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `statistik_ibfk_2` FOREIGN KEY (`id_pertandingan`) REFERENCES `pertandingan` (`id_pertandingan`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

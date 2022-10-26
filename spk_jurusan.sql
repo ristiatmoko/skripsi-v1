@@ -31,7 +31,7 @@ CREATE TABLE `bobot` (
   `id_bobot` int NOT NULL,
   `tingkat_kepentingan` varchar(200) NOT NULL,
   `nilai_bobot` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `bobot`
@@ -55,7 +55,7 @@ CREATE TABLE `hasil` (
   `tanggal` datetime NOT NULL,
   `nisn` varchar(200) NOT NULL,
   `rekomendasi_jurusan` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -67,7 +67,7 @@ CREATE TABLE `jurusan` (
   `id_alternatif` int NOT NULL,
   `kode_jurusan` varchar(100) NOT NULL,
   `jurusan` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `jurusan`
@@ -88,7 +88,7 @@ CREATE TABLE `kriteria` (
   `bobot_preferensi` varchar(2) NOT NULL,
   `nama_kriteria` varchar(200) NOT NULL,
   `tipe` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `kriteria`
@@ -113,7 +113,7 @@ INSERT INTO `kriteria` (`id_kriteria`, `bobot_preferensi`, `nama_kriteria`, `tip
 CREATE TABLE `musim` (
   `id_musim` int NOT NULL,
   `musim` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `musim`
@@ -133,7 +133,7 @@ CREATE TABLE `pertandingan` (
   `id_musim` int NOT NULL,
   `versus` int NOT NULL,
   `tanggal` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -151,7 +151,7 @@ CREATE TABLE `proses_hitung` (
   `w4` varchar(10) NOT NULL,
   `s` varchar(10) NOT NULL,
   `v` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `proses_hitung`
@@ -264,7 +264,7 @@ CREATE TABLE `statistik` (
   `kartu_kuning` int NOT NULL,
   `bunuhdiri` int NOT NULL,
   `motm` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -279,7 +279,7 @@ CREATE TABLE `sub_kriteria` (
   `c2` varchar(10) NOT NULL,
   `c3` varchar(10) NOT NULL,
   `c4` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `sub_kriteria`
@@ -301,7 +301,7 @@ CREATE TABLE `user` (
   `password` varchar(255) NOT NULL,
   `level` varchar(20) DEFAULT NULL,
   `created_date` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`

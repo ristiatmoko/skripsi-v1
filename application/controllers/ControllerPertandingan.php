@@ -8,7 +8,7 @@ class ControllerPertandingan extends CI_Controller
     {
         parent::__construct();
         $this->load->database();
-        $this->load->model('KriteriaModel');
+        $this->load->model('PertandinganModel');
         $this->load->library('form_validation');
         $this->load->library('Datatables');
         $this->load->helper(array('form', 'url', 'download', 'file'));
@@ -20,76 +20,89 @@ class ControllerPertandingan extends CI_Controller
 
     public function json()
     {
-        header('Content-Type: application/json');
-        echo $this->KriteriaModel->json();
+        return $this->PertandinganModel->json();
     }
 
     public function index()
     {
+      // dd($this->json());
         $this->load->view('header');
-        $this->load->view('pertandingan/listPertandingan');
+        $this->load->view('pertandingan/listPertandingan', ['matchs' => $this->json()]);
         $this->load->view('footer');
     }
+
 
     public function insert_pertandingan()
-    {
-        $this->load->view('header');
-        $this->load->view('pertandingan/formPertandingan');
-        $this->load->view('footer');
-    }
-    
-    public function insert_kriteria_action()
-    {
+    {   
+        // $this->db->where('id_musim', $musim);
+        $musim = $this->db->get("musim")->result_array();
         $data = [
-            'bobot_preferensi' => $this->input->post("bobot_preferensi"),
-            'nama_kriteria'    => $this->input->post("nama_kriteria"),
-            'tipe'             => $this->input->post("tipe")
-        ];
-
-        $this->KriteriaModel->insert_kriteria($data);
-
-        $this->session->set_flashdata("flash_message", "Berhasil tambah data kriteria.");
-        redirect(site_url("controllerKriteria"));
-    }
-
-    public function edit_kriteria_form($id_kriteria)
-    {
-        $this->db->where('id_kriteria', $id_kriteria);
-        $kriteria = $this->db->get("kriteria")->row();
-        $data = [
-            'kriteria' => $kriteria
+          'musim' => $musim
         ];
 
         $this->load->view('header');
-        $this->load->view('kriteria/formKriteriaEdit', $data);
+        $this->load->view('pertandingan/formPertandingan', $data);
         $this->load->view('footer');
     }
 
-    public function edit_kriteria_action($id_kriteria)
-    {
+    public function insert_pertandingan_action()
+    {   
+        
         $data = [
-            'bobot_preferensi' => $this->input->post("bobot_preferensi"),
-            'nama_kriteria'    => $this->input->post("nama_kriteria"),
-            'tipe'             => $this->input->post("tipe")
+          // 'allMusim'  => $this->HasilModel->allMusim(),
+          // 'id_pertandingan' => $this->input->post("id_pertandingan"),
+          'id_musim' => $this->input->post("id_musim"),
+          'versus' => $this->input->post("versus"),
+          'tanggal' => $this->input->post("tanggal"),
+
         ];
 
-        $this->KriteriaModel->update_kriteria($id_kriteria, $data);
+        // dd($data);
 
+        $this->PertandinganModel->insert_pertandingan($data);
 
-        $this->session->set_flashdata("flash_message", "Berhasil update data kriteria.");
-        redirect(site_url("controllerKriteria"));
+        $this->session->set_flashdata("flash_message", "Berhasil tambah data musim.");
+        redirect(site_url("ControllerPertandingan"));
     }
 
-    public function hapus_kriteria_action($id_kriteria)
+
+    public function edit_pertandingan_form($id_pertandingan)
     {
-        $data_kriteria = $this->KriteriaModel->get_by_id($id_kriteria);
-        if ($data_kriteria) {
-            $this->KriteriaModel->delete_kriteria($id_kriteria);
-            $this->session->set_flashdata("flash_message", "Berhasil hapus data Kriteria.");
-            redirect(site_url("controllerKriteria"));
+        $this->db->where('id_pertandingan', $id_pertandingan);
+        $pertandingan = $this->db->get("pertandingan")->row();
+        $data = [
+          'pertandingan' => $pertandingan
+        ];
+
+        $this->load->view('header');
+        $this->load->view('pertandingan/formPertandinganEdit', $data);
+        $this->load->view('footer');
+    }
+
+    public function edit_musim_action($id_musim)
+    {
+        $data = [
+          'musim' => $this->input->post("musim"),
+        ];
+        // dd($data);
+
+        $this->MusimModel->update_musim($id_musim, $data);
+
+
+        $this->session->set_flashdata("flash_message", "Berhasil update data musim.");
+        redirect(site_url("ControllerMusim"));
+    }
+
+    public function hapus_pertandingan_action($id_pertandingan)
+    {
+        $data_pertandingan = $this->PertandinganModel->get_by_id($id_pertandingan);
+        if ($data_pertandingan) {
+          $this->PertandinganModel->hapus_pertandingan($id_pertandingan);
+          $this->session->set_flashdata("flash_message", "Berhasil hapus data Pertandingan.");
+          redirect(site_url("ControllerPertandingan"));
         } else {
-            $this->session->set_flashdata("error_message", "Gagal hapus data Kriteria.");
-            redirect(site_url("controllerKriteria"));
+          $this->session->set_flashdata("error_message", "Gagal hapus data Pertandingan.");
+          redirect(site_url("ControllerPertandingan"));
         }
     }
 }

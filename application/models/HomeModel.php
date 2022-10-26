@@ -1,25 +1,18 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class StatistikModel extends CI_Model {
+class HomeModel extends CI_Model {
     
     // datatables
     function json() {
-    //   $this->db->select('id_pertandingan, pertandingan.id_musim, versus, tanggal');
-    //   $this->db->join("musim", "pertandingan.id_musim = musim.id_musim");
-      $this->db->join("siswa", "statistik.id_pemain = siswa.id_pemain");
-      $query = $this->db->get('statistik');
+      $this->db->select('nisn, nama_lengkap, jenis_kelamin, tinggi_badan, berat_badan, umur');
+      $query = $this->db->get('siswa');
       return $query->result();
-        if(!empty($id_pemain)) {   
-            $this->db->where("statistik.id_pemain", $id_pemain);
-        }
-
-        return $this->db->get()->result();
     }
 
-    function insert_statistik($data)
+    function insert_musim($data)
     {
-        $this->db->insert('statistik', $data);
+        $this->db->insert('musim', $data);
     }
 
     function get_by_id($id_musim)

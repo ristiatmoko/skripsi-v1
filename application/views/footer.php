@@ -27,6 +27,10 @@
 <!-- AdminLTE for demo purposes -->
 <script src="<?= base_url('vendor') ?>/dist/js/demo.js"></script>
 
+<!-- Plugins js -->
+
+<script src="<?= base_url('vendor') ?>assets/plugins/bootstrap-touchspin/js/jquery.bootstrap-touchspin.min.js"></script>
+
 <!-- ------------------------------------------ -->
 
 

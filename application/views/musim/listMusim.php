@@ -9,7 +9,7 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                         <div class="form-group">
-                            <a type="button" href="<?= site_url("controllerKriteria/insert_kriteria"); ?>" class="btn btn-success"> <i class="fa fa-plus"></i> Tambah</a>
+                            <a type="button" href="<?= site_url("ControllerMusim/insert_musim"); ?>" class="btn btn-success"> <i class="fa fa-plus"></i> Tambah</a>
                         </div>
                         <div class="table-responsive">
                             <table class="table table-striped">
@@ -17,12 +17,14 @@
                                 <tr>
                                     <th width="5%">No</th>
                                     <th>Musim</th>
+                                    <th>Aksi</th>
                                 </tr>
                                 </thead>
                                 <tbody>
+                                <?php $no = 1; ?>
                                 <?php foreach ($musims as $musim): ?>
                                     <tr>
-                                        <td><?= $musim->id_musim ?></td>
+                                        <td><?= $no++; ?></td>
                                         <td><?= $musim->musim ?></td>
                                         <td><?=
                                           anchor(site_url('controllerMusim/edit_musim_form/'.$musim->id_musim),'<i class="fas fa-edit"></i> Edit',

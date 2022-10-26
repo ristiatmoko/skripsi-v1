@@ -1,40 +1,50 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class KriteriaModel extends CI_Model {
+class PertandinganModel extends CI_Model {
     
     // datatables
     function json() {
-        $this->datatables->select('id_kriteria , nama_kriteria, tipe, CONCAT(nama_kriteria, " (", bobot_preferensi, ") ") AS kriteria_concat');
-        $this->datatables->from('kriteria');
-        // add this line for join
-        $this->datatables->add_column('action',anchor(site_url('controllerKriteria/edit_kriteria_form/$1'),'<i class="fas fa-edit"></i> Edit','class="btn btn-success" title="Edit Data"')." ".anchor(site_url('controllerKriteria/hapus_kriteria_action/$1'),'<i class="fa fa-archive"></i> Hapus','data-nama="$2" class="btn btn-danger hapus" title="Hapus Data"'), 'id_kriteria,nama_kriteria');
-        return $this->datatables->generate();
+    //   $this->db->select('id_pertandingan, pertandingan.id_musim, versus, tanggal');
+      $this->db->join("musim", "pertandingan.id_musim = musim.id_musim");
+      $query = $this->db->get('pertandingan');
+      return $query->result();
+        if(!empty($id_musim)) {   
+            $this->db->where("pertandingan.id_musim", $id_musim);
+        }
+
+        return $this->db->get()->result();
     }
 
-    function insert_kriteria($data)
+    function insert_pertandingan($data)
     {
-        $this->db->insert('kriteria', $data);
+        $this->db->insert('pertandingan', $data);
     }
 
-    function get_by_id($id_kriteria)
+    function get_by_id($id_pertandingan)
     {
-        $this->db->where('id_kriteria', $id_kriteria);
-        return $this->db->get("kriteria")->row();
+        $this->db->where('id_pertandingan', $id_pertandingan);
+        return $this->db->get("pertandingan")->row();
     }
 
-    function update_kriteria($id, $data)
+    function update_musim($id_musim, $data)
     {
-        $this->db->where("id_kriteria", $id);
-        $this->db->update("kriteria", $data);
+        $this->db->where("id_musim", $id_musim);
+        $this->db->update("musim", $data);
     }
 
-    function delete_kriteria($id)
+    function hapus_pertandingan($id_pertandingan)
     {
-        $this->db->where("id_kriteria", $id);
-        $this->db->delete("kriteria");
+        $this->db->where("id_pertandingan", $id_pertandingan);
+        $this->db->delete("pertandingan");
     }
-    
+
+    function get_all()
+    {
+        $this->db->select('kode_mapel, nama_mapel');
+        $query = $this->db->get('mata_pelajaran');
+        return $query->result();
+    }
 }
 
 /* End of file Login_model.php */

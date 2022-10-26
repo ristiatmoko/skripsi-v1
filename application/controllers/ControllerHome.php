@@ -10,7 +10,7 @@ class ControllerHome extends CI_Controller
     {
         parent::__construct();
         $this->load->database();
-        // $this->load->model('HomeModel');
+        $this->load->model('HomeModel');
         $this->load->library('form_validation');
         $this->load->library('upload');
         if (empty($this->session->session_login['username'])) {
@@ -19,10 +19,15 @@ class ControllerHome extends CI_Controller
         }
     }
 
+    public function json()
+    {
+        return $this->HomeModel->json();
+    }
+
     public function index()
     {     
         $this->load->view("header");
-        $this->load->view("dashboard");
+        $this->load->view('dashboard', ['homes'=>$this->json()]);
         $this->load->view("footer");
     }
     

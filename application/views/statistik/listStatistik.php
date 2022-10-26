@@ -4,37 +4,45 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Data Pertandingan</h3>
+                        <h3 class="card-title">Data Statistik</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
                         <div class="form-group">
-                            <a type="button" href="<?= site_url("ControllerPertandingan/insert_pertandingan"); ?>" class="btn btn-success"> <i class="fa fa-plus"></i> Tambah</a>
+                            <a type="button" href="<?= site_url("ControllerStatistik/insert_statistik"); ?>" class="btn btn-success"> <i class="fa fa-plus"></i> Tambah</a>
                         </div>
                         <div class="table-responsive">
                             <table class="table table-striped">
                                 <thead>
                                 <tr>
                                     <th width="5%">No</th>
-                                    <th>Musim</th>
-                                    <th>Versus</th>
-                                    <th>Tanggal</th>
+                                    <th>Nama</th>
+                                    <th>Gol</th>
+                                    <th>Assist</th>
+                                    <th>Main</th>
+                                    <th>Merah</th>
+                                    <th>Kuning</th>
+                                    <th>MOTM</th>
                                     <th>Aksi</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <?php $no=1; ?>
-                                <?php foreach ($matchs as $pertandingan): ?>
+                                <?php $no = 1; ?>
+                                <?php foreach ($statistiks as $statistik): ?>
                                     <tr>
                                         <td><?= $no++; ?></td>
-                                        <td><?= $pertandingan->musim ?></td>
-                                        <td><?= $pertandingan->versus ?></td>
-                                        <td><?= $pertandingan->tanggal ?></td>
+                                        <td><?= $statistik->nama_lengkap ?></td>
+                                        <td><?= $statistik->gol ?></td>
+                                        <td><?= $statistik->assist ?></td>
+                                        <td><?= $statistik->main ?></td>
+                                        <td><?= $statistik->kartu_merah ?></td>
+                                        <td><?= $statistik->kartu_kuning ?></td>
+                                        <td><?= $statistik->motm ?></td>
                                         <td><?=
-                                          anchor(site_url('ControllerPertandingan/edit_pertandingan_form/'.$pertandingan->id_pertandingan),'<i class="fas fa-edit"></i> Edit',
+                                          anchor(site_url('ControllerStatistik/edit_statistik_form/'.$statistik->id_statistik),'<i class="fas fa-edit"></i> Edit',
                                             'class="btn btn-success" title="Edit Data"')." "
-                                          .anchor(site_url('ControllerPertandingan/hapus_pertandingan_action/'.$pertandingan->id_pertandingan),'<i class="fa fa-archive"></i> Hapus',
-                                            'data-nama="'.$pertandingan->versus.'" class="btn btn-danger hapus" title="Hapus Data"') ?></td>
+                                          .anchor(site_url('ControllerStatistik/hapus_musim_action/'.$statistik->id_statistik),'<i class="fa fa-archive"></i> Hapus',
+                                            'data-nama="'.$statistik->id_statistik.'" class="btn btn-danger hapus" title="Hapus Data"') ?></td>
                                     </tr>
                                 <?php endforeach; ?>
                                 </tbody>

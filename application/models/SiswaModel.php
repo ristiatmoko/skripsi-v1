@@ -9,7 +9,7 @@ class SiswaModel extends CI_Model {
         $this->datatables->from('siswa as a');
         //add this line for join
         $this->datatables->add_column('action',
-         anchor(site_url('controllerStatistik/tambah_statistik/$1'),'<i class="fas fa-edit"></i> Statistik','class="btn btn-danger btn-sm btn-block" title="Edit Data"')." ".
+        //  anchor(site_url('controllerStatistik/insert_statistik/$1'),'<i class="fas fa-edit"></i> Statistik','class="btn btn-danger btn-sm btn-block" title="Edit Data"')." ".
         anchor(site_url('controllerSiswa/edit_siswa/$1'),'<i class="fas fa-edit"></i> Edit','class="btn btn-success btn-sm btn-block" title="Edit Data"')." ".
         anchor(site_url('controllerSiswa/hapus_siswa/$1'),'<i class="fa fa-archive"></i> Hapus','data-nama_siswa="$2" class="btn btn-primary btn-sm btn-block" title="Hapus Data"'), 'nisn,nama_lengkap');
         return $this->datatables->generate();

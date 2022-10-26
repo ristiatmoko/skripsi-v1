@@ -10,6 +10,10 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                         <div class="form-group">
+                            <a type="button" href="<?= site_url("ControllerStatistik"); ?>" class="btn btn-danger"></i> Statistik</a>
+                            <!-- anchor(site_url('controllerStatistik/insert_statistik/$1'),'<i class="fas fa-edit"></i> Statistik','class="btn btn-danger btn-sm btn-block" title="Edit Data"')." ". -->
+                        </div>
+                        <div class="form-group">
                             <a type="button" href="<?= site_url("controllerSiswa/insert_siswa"); ?>" class="btn btn-success"> <i class="fa fa-plus"></i> Tambah</a>
                         </div>
                         <div class="table-responsive">

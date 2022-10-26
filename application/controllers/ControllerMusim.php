@@ -40,13 +40,15 @@ class ControllerMusim extends CI_Controller
     public function insert_musim_action()
     {
         $data = [
-          'musim' => $this->input->post("musim")
+          'musim' => $this->input->post("musim")  
         ];
 
-        $this->MusimModel->insert_model($data);
+        // dd($data);
+
+        $this->MusimModel->insert_musim($data);
 
         $this->session->set_flashdata("flash_message", "Berhasil tambah data musim.");
-        redirect(site_url("ControllerModel"));
+        redirect(site_url("ControllerMusim"));
     }
 
 
@@ -59,23 +61,22 @@ class ControllerMusim extends CI_Controller
         ];
 
         $this->load->view('header');
-        $this->load->view('musim/formKriteriaEdit', $data);
+        $this->load->view('musim/formMusimEdit', $data);
         $this->load->view('footer');
     }
 
     public function edit_musim_action($id_musim)
     {
         $data = [
-          'bobot_preferensi' => $this->input->post("bobot_preferensi"),
-          'nama_musim'    => $this->input->post("nama_musim"),
-          'tipe'             => $this->input->post("tipe")
+          'musim' => $this->input->post("musim"),
         ];
+        // dd($data);
 
         $this->MusimModel->update_musim($id_musim, $data);
 
 
         $this->session->set_flashdata("flash_message", "Berhasil update data musim.");
-        redirect(site_url("controllerKriteria"));
+        redirect(site_url("ControllerMusim"));
     }
 
     public function hapus_musim_action($id_musim)

@@ -17,7 +17,7 @@
                                         <select name="nisn" id="nisn" class="form-control" required>
                                             <option value="" disabled selected>--Pilih--</option>
                                             <?php foreach ($allSiswa as $value) { ?>
-                                                <option value="<?= $value->nisn ?>"><?= $value->nama_lengkap ?></option>
+                                            <option value="<?= $value->nisn ?>"><?= $value->nama_lengkap ?></option>
                                             <?php } ?>
                                         </select>
                                     </div>

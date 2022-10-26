@@ -1,14 +1,14 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class ControllerKriteria extends CI_Controller
+class ControllerStatistik extends CI_Controller
 {
 
     function __construct()
     {
         parent::__construct();
         $this->load->database();
-        $this->load->model('KriteriaModel');
+        $this->load->model('StatistikModel');
         $this->load->library('form_validation');
         $this->load->library('Datatables');
         $this->load->helper(array('form', 'url', 'download', 'file'));
@@ -20,76 +20,94 @@ class ControllerKriteria extends CI_Controller
 
     public function json()
     {
-        header('Content-Type: application/json');
-        echo $this->KriteriaModel->json();
+        return $this->StatistikModel->json();
     }
 
     public function index()
     {
+      // dd($this->json());
         $this->load->view('header');
-        $this->load->view('kriteria/listKriteria');
+        $this->load->view('statistik/listStatistik', ['statistiks' => $this->json()]);
         $this->load->view('footer');
     }
 
-    public function insert_kriteria()
-    {
-        $this->load->view('header');
-        $this->load->view('kriteria/formKriteria');
-        $this->load->view('footer');
-    }
-    
-    public function insert_kriteria_action()
-    {
+
+    public function insert_statistik()
+    {   
+        // $this->db->where('id_musim', $musim);
+        $siswa = $this->db->get("siswa")->result_array();
+        $pertandingan = $this->db->get("pertandingan")->result_array();
         $data = [
-            'bobot_preferensi' => $this->input->post("bobot_preferensi"),
-            'nama_kriteria'    => $this->input->post("nama_kriteria"),
-            'tipe'             => $this->input->post("tipe")
-        ];
-
-        $this->KriteriaModel->insert_kriteria($data);
-
-        $this->session->set_flashdata("flash_message", "Berhasil tambah data kriteria.");
-        redirect(site_url("controllerKriteria"));
-    }
-
-    public function edit_kriteria_form($id_kriteria)
-    {
-        $this->db->where('id_kriteria', $id_kriteria);
-        $kriteria = $this->db->get("kriteria")->row();
-        $data = [
-            'kriteria' => $kriteria
+          'siswa' => $siswa,
+          'pertandingan' => $pertandingan
         ];
 
         $this->load->view('header');
-        $this->load->view('kriteria/formKriteriaEdit', $data);
+        $this->load->view('statistik/formStatistik', $data);
         $this->load->view('footer');
     }
 
-    public function edit_kriteria_action($id_kriteria)
-    {
+    public function insert_statistik_action()
+    {   
+        
         $data = [
-            'bobot_preferensi' => $this->input->post("bobot_preferensi"),
-            'nama_kriteria'    => $this->input->post("nama_kriteria"),
-            'tipe'             => $this->input->post("tipe")
+          // 'allMusim'  => $this->HasilModel->allMusim(),
+          'id_pemain'         => $this->input->post("id_pemain"),
+          'id_pertandingan'  => $this->input->post("id_pertandingan"),
+          'gol'           => $this->input->post("gol"),
+          'assist'        => $this->input->post("assist"),
+          'main'          => $this->input->post("main"),
+          'kartu_merah'   => $this->input->post("kartu_merah"),
+          'kartu_kuning'  => $this->input->post("kartu_kuning"),
+          'motm'          => $this->input->post("motm"),
         ];
 
-        $this->KriteriaModel->update_kriteria($id_kriteria, $data);
+        // dd($data);
 
+        $this->StatistikModel->insert_statistik($data);
 
-        $this->session->set_flashdata("flash_message", "Berhasil update data kriteria.");
-        redirect(site_url("controllerKriteria"));
+        $this->session->set_flashdata("flash_message", "Berhasil tambah data musim.");
+        redirect(site_url("ControllerStatistik"));
     }
 
-    public function hapus_kriteria_action($id_kriteria)
+
+    public function edit_musim_form($id_musim)
     {
-        $data_kriteria = $this->KriteriaModel->get_by_id($id_kriteria);
-        if ($data_kriteria) {
-            $this->KriteriaModel->delete_kriteria($id_kriteria);
-            $this->session->set_flashdata("flash_message", "Berhasil hapus data Kriteria.");
-            redirect(site_url("controllerKriteria"));
+        $this->db->where('id_musim', $id_musim);
+        $musim = $this->db->get("musim")->row();
+        $data = [
+          'musim' => $musim
+        ];
+
+        $this->load->view('header');
+        $this->load->view('musim/formMusimEdit', $data);
+        $this->load->view('footer');
+    }
+
+    public function edit_musim_action($id_musim)
+    {
+        $data = [
+          'musim' => $this->input->post("musim"),
+        ];
+        // dd($data);
+
+        $this->MusimModel->update_musim($id_musim, $data);
+
+
+        $this->session->set_flashdata("flash_message", "Berhasil update data musim.");
+        redirect(site_url("ControllerMusim"));
+    }
+
+    public function hapus_musim_action($id_musim)
+    {
+        $data_musim = $this->MusimModel->get_by_id($id_musim);
+        if ($data_musim) {
+          $this->MusimModel->hapus_musim($id_musim);
+          $this->session->set_flashdata("flash_message", "Berhasil hapus data Kriteria.");
+          redirect(site_url("ControllerMusim"));
         } else {
-            $this->session->set_flashdata("error_message", "Gagal hapus data Kriteria.");
-            redirect(site_url("controllerKriteria"));
+          $this->session->set_flashdata("error_message", "Gagal hapus data Kriteria.");
+          redirect(site_url("ControllerMusim"));
         }
     }
 }

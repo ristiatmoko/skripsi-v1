@@ -4,7 +4,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Tambah Data Pertandingan</h3>
+                        <h3 class="card-title">Edit Data Pertandingan</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -30,7 +30,7 @@
                                     <label class="col-md-12" for="versus">Versus</span>
                                     </label>
                                     <div class="col-md-12">
-                                        <input type="text" id="versus" name="versus" class="form-control" placeholder="Ketikkan versus" required>
+                                        <input type="text" id="versus" name="versus" class="form-control" value="<?= $pertandingan->versus ?>" placeholder="Ketikkan versus" required>
                                         <span class="text-danger"><?= form_error('versus') ?></span>
                                     </div>
                                 </div>
@@ -39,7 +39,7 @@
                                     <label class="col-md-12" for="tanggal">Tanggal</span>
                                     </label>
                                     <div class="col-md-12">
-                                        <input type="date" id="tanggal" name="tanggal" class="form-control" placeholder="Ketikkan tanggal" required>
+                                        <input type="date" id="tanggal" name="tanggal" class="form-control" value="<?= $pertandingan->tanggal ?>"  placeholder="Ketikkan tanggal" required>
                                         <span class="text-danger"><?= form_error('tanggal') ?></span>
                                     </div>
                                 </div>

@@ -21,10 +21,10 @@ class MusimModel extends CI_Model {
         return $this->db->get("musim")->row();
     }
 
-    function update_siswa($nis, $data)
+    function update_musim($id_musim, $data)
     {
-        $this->db->where("nisn", $nis);
-        $this->db->update("siswa", $data);
+        $this->db->where("id_musim", $id_musim);
+        $this->db->update("musim", $data);
     }
 
     function hapus_musim($id_musim)

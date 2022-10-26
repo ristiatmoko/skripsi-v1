@@ -186,21 +186,21 @@
             <div class="col-xl-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Data Siswa</h3>
+                        <h3 class="card-title">Statistik Pemain</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <a type="button" href="<?= site_url("controllerSiswa/insert_siswa"); ?>" class="btn btn-success"> <i class="fa fa-plus"></i> Tambah</a>
-                        </div>
+                        </div> -->
                         <div class="table-responsive">
                             <table id="mytable_siswa" class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th width="5%">No</th>
-                                        <th>NoPung</th>
-                                        <th>Nama</th>
-                                        <th>Posisi</th>
+                                        <th width="">No</th>
+                                        <th>Pemain</th>
+                                        <th>TB</th>
+                                        <th>BB</th>
                                         <th>Umur</th>
                                         <th>TB</th>
                                         <th>BB</th>
@@ -216,6 +216,24 @@
                                         <th>Motm</th>
                                     </tr>
                                 </thead>
+                                <tbody>
+                                <?php $no=1; ?>
+                                <?php foreach ($homes as $home): ?>
+                                    <tr>
+                                        <td><?= $no++; ?></td>
+                                        <td><?= $home->nama_lengkap ?> <br>
+                                        <small><?= $home->umur ?>th (<?= $home->jenis_kelamin ?>)</small>        
+                                        </td>
+                                        <td><?= $home->tinggi_badan ?></td>
+                                        <td><?= $home->berat_badan ?></td>
+                                        <!-- <td><?=
+                                          anchor(site_url('ControllerPertandingan/edit_pertandingan_form/'.$pertandingan->id_pertandingan),'<i class="fas fa-edit"></i> Edit',
+                                            'class="btn btn-success" title="Edit Data"')." "
+                                          .anchor(site_url('ControllerPertandingan/hapus_pertandingan_action/'.$pertandingan->id_pertandingan),'<i class="fa fa-archive"></i> Hapus',
+                                            'data-nama="'.$pertandingan->versus.'" class="btn btn-danger hapus" title="Hapus Data"') ?></td> -->
+                                    </tr>
+                                <?php endforeach; ?>
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -228,90 +246,16 @@
 <!-- </section>
 </div>
 </div> -->
-<script src="<?= base_url('vendor') ?>/plugins/jquery/jquery.min.js"></script>
-
-<script type="text/javascript">
-    $(document).ready(function() {
-        $.fn.dataTableExt.oApi.fnPagingInfo = function(oSettings) {
-            return {
-                "iStart": oSettings._iDisplayStart,
-                "iEnd": oSettings.fnDisplayEnd(),
-                "iLength": oSettings._iDisplayLength,
-                "iTotal": oSettings.fnRecordsTotal(),
-                "iFilteredTotal": oSettings.fnRecordsDisplay(),
-                "iPage": Math.ceil(oSettings._iDisplayStart / oSettings._iDisplayLength),
-                "iTotalPages": Math.ceil(oSettings.fnRecordsDisplay() / oSettings._iDisplayLength)
-            };
-        };
-
-        var t = $("#mytable_siswa").dataTable({
-            "processing": true,
-            "serverSide": true,
-            "oLanguage": {
-                sProcessing: "Loading. . ."
-            },
-            "ajax": {
-                "url": "<?= site_url('controllerSiswa/json') ?>",
-                "type": "POST"
-            },
-            "columns": [{
-                    "data": "nisn",
-                    "orderable": false,
-                    "className": "text-center"
-                },
-                {
-                    "data": "nisn"
-                },
-                {
-                    "data": "nama_lengkap"
-                },
-                {
-                    "data": "jenis_kelamin"
-                },
-               
-                {
-                    "data": "tinggi_badan"
-                },
-                {
-                    "data": "berat_badan"
-                },
-                {
-                    "data": "umur"
-                },
-                {
-                    "data": "action",
-                    "orderable": false,
-                    "className": "text-center"
-                }
-            ],
-            order: [
-                [3, 'desc']
-            ],
-            rowCallback: function(row, data, iDisplayIndex) {
-                var info = this.fnPagingInfo();
-                var page = info.iPage;
-                var length = info.iLength;
-                var index = page * length + (iDisplayIndex + 1);
-                $('td:eq(0)', row).html(index);
-            }
-        });
-    });
-</script>
-
 <script>
-    $('#buttonImport').click(function(e) {
-        $('#importModal').modal('show');
-    })
 
-    $('#mytable_siswa').on('click', '.hapus', function(e) {
-
-        event.preventDefault();
+    $(document).on('click', '.hapus', function(e) {
+        e.preventDefault();
         const href = $(this).attr('href');
-        var nama_siswa = $(this).data('nama_siswa');
+        let nama = $(this).data('nama');
 
         Swal.fire({
             title: 'Apakah anda yakin?',
-            text: "Data " + nama_siswa + " akan dihapus!",
+            text: "Data " + nama + " akan dihapus!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -322,14 +266,5 @@
                 document.location.href = href;
             }
         })
-    });
-
-    $('#mytable_siswa').on('click', '.btn_atur_kelas', function(e) {
-        $('#exampleModal').modal('show');
-        var nama_siswa = $(this).data('siswa');
-        var nis = $(this).data('nis');
-
-        $('#nama_siswa').val(nama_siswa);
-        $('#nis').val(nis);
     });
 </script>

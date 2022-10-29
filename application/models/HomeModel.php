@@ -3,11 +3,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class HomeModel extends CI_Model {
     
-    // datatables
     function json() {
-      $this->db->select('nisn, nama_lengkap, jenis_kelamin, tinggi_badan, berat_badan, umur');
-      $query = $this->db->get('siswa');
-      return $query->result();
+        $this->db->from('statistik');
+        $this->db->join('siswa', 'siswa.id_pemain=statistik.id_pemain');
+        $this->db->join('pertandingan', 'pertandingan.id_pertandingan=statistik.id_pertandingan');
+        $this->db->join('musim', 'musim.id_musim=pertandingan.id_musim');
+        $query = $this->db->get()->result();
+        return $query;
     }
 
     function insert_musim($data)

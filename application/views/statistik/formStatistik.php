@@ -16,11 +16,9 @@
                                         <label class="col-md-12" for="bdate">Pilih Pemain</span>
                                         </label>
                                         <div class="col">
-                                            <select name="id_pemain" id="id_pemain" class="form-control" required>
-                                                <option value="" disabled selected>--Pilih--</option>
-                                                <?php foreach ($siswa as $value) { ?>
-                                                    <option value="<?= $value['id_pemain'] ?>"><?= $value['nama_lengkap'] ?></option>
-                                                <?php } ?>
+                                            <select name="id_pemain" readonly id="id_pemain" class="form-control" required>
+                                                <option value="<?= $siswa->id_pemain; ?>" selected><?= $siswa->nama_lengkap; ?></option>
+
                                             </select>
                                         </div>
                                     </div>

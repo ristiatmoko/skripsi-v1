@@ -199,21 +199,19 @@
                                     <tr>
                                         <th width="">No</th>
                                         <th>Pemain</th>
-                                        <th>TB</th>
-                                        <th>BB</th>
-                                        <th>Umur</th>
+                                        <th>Pertandingan</th>
+                                        <th>Musim</th>
                                         <th>TB</th>
                                         <th>BB</th>
                                         <th>Gol</th>
                                         <th>Assist</th>
                                         <th>Save</th>
-                                        <th>Save</th>
                                         <th>Clean</th>
                                         <th>Main</th>
                                         <th>Merah</th>
                                         <th>Kuning</th>
-                                        <th>Bunuhdiri</th>
-                                        <th>Motm</th>
+                                        <th>Bunuh Diri</th>
+                                        <th>MOTM</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -221,11 +219,25 @@
                                 <?php foreach ($homes as $home): ?>
                                     <tr>
                                         <td><?= $no++; ?></td>
-                                        <td><?= $home->nama_lengkap ?> <br>
-                                        <small><?= $home->umur ?>th (<?= $home->jenis_kelamin ?>)</small>        
+                                        <td>
+                                            <?= $home->nama_lengkap ?> <br>
+                                            <small>
+                                                <?= $home->umur ?>th (<?= $home->jenis_kelamin ?>)
+                                            </small>        
                                         </td>
-                                        <td><?= $home->tinggi_badan ?></td>
-                                        <td><?= $home->berat_badan ?></td>
+                                        <td><?= $home->versus ?></td>
+                                        <td><?= $home->musim ?></td>
+                                        <td><?= $home->tinggi_badan ?> cm</td>
+                                        <td><?= $home->berat_badan ?> kg</td>
+                                        <td><?= $home->gol ?></td>
+                                        <td><?= $home->assist ?></td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td><?= $home->main ?></td>
+                                        <td><?= $home->kartu_merah ?></td>
+                                        <td><?= $home->kartu_kuning ?></td>
+                                        <td>-</td>
+                                        <td><?= $home->motm ?></td>
                                         <!-- <td><?=
                                           anchor(site_url('ControllerPertandingan/edit_pertandingan_form/'.$pertandingan->id_pertandingan),'<i class="fas fa-edit"></i> Edit',
                                             'class="btn btn-success" title="Edit Data"')." "

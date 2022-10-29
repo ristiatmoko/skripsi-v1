@@ -32,10 +32,12 @@ class ControllerStatistik extends CI_Controller
     }
 
 
-    public function insert_statistik()
+    public function insert_statistik($id)
     {   
-        // $this->db->where('id_musim', $musim);
-        $siswa = $this->db->get("siswa")->result_array();
+      // dd($id);
+        $this->db->where('id_pemain', $id);
+        $siswa = $this->db->get("siswa")->row();
+        // dd($siswa);
         $pertandingan = $this->db->get("pertandingan")->result_array();
         $data = [
           'siswa' => $siswa,

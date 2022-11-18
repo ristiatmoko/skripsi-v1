@@ -6,7 +6,9 @@ class HasilModel extends CI_Model
 
     function allSiswa()
     {
-        return $this->db->get("siswa")->result();
+        $results = $this->db->join("statistik", "statistik.id_pemain=siswa.id_pemain")->get("siswa")->result();
+        // dd($results);
+        return $results;
     }
 
     function get_proses_hitung($nisn)

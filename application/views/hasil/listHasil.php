@@ -11,13 +11,20 @@
                         <form class="form-material form-horizontal" method="POST" action="<?= site_url('ControllerHasil/prosesHitung') ?>" enctype="multipart/form-data">
                             <div class="col-md-12">
                                 <div class="row">
-                                    <label class="col-md-12" for="bdate">Pilih Siswa</span>
+                                    <label class="col-md-12" for="bdate">Pilih Pemain</span>
                                     </label>
                                     <div class="col">
-                                        <select name="nisn" id="nisn" class="form-control" required>
+                                        <select name="nisn" id="pilih-pemain" class="form-control" required>
                                             <option value="" disabled selected>--Pilih--</option>
                                             <?php foreach ($allSiswa as $value) { ?>
-                                            <option value="<?= $value->nisn ?>"><?= $value->nama_lengkap ?></option>
+                                            <option value="<?= $value->nisn ?>"
+                                                data-gol="<?= $value->gol ?>"
+                                                data-assist="<?= $value->assist ?>"
+                                                data-main="<?= $value->main ?>"
+                                                data-kartu_merah="<?= $value->kartu_merah ?>"
+                                                data-kartu_kuning="<?= $value->kartu_kuning ?>"
+                                                data-motm="<?= $value->motm ?>"
+                                            ><?= $value->nama_lengkap ?></option>
                                             <?php } ?>
                                         </select>
                                     </div>
@@ -28,31 +35,43 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="row">
-                                    <div class="col-md-3">
-                                        Bahasa Indonesia
+                                    <div class="col-md-2">
+                                        C1 (Gol)
                                     </div>
-                                    <div class="col-md-3">
-                                        Bahasa Inggris
+                                    <div class="col-md-2">
+                                        C2 (Assist)
                                     </div>
-                                    <div class="col-md-3">
-                                        MTK
+                                    <div class="col-md-2">
+                                        C3 (Main)
                                     </div>
-                                    <div class="col-md-3">
-                                        IPA
+                                    <div class="col-md-2">
+                                        C4 (Kartu Merah)
+                                    </div>
+                                    <div class="col-md-2">
+                                        C5 (Kartu Kuning)
+                                    </div>
+                                    <div class="col-md-2">
+                                        C6 (Motm)
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-3">
-                                        <input type="text" class="form-control" name="bhs_indo" value="" required>
+                                    <div class="col-md-2">
+                                        <input type="text" class="form-control" id="c_gol" name="c_gol" value="" required>
                                     </div>
-                                    <div class="col-md-3">
-                                        <input type="text" class="form-control" name="bhs_ingris" value="" required>
+                                    <div class="col-md-2">
+                                        <input type="text" class="form-control" id="c_assist" name="c_assist" value="" required>
                                     </div>
-                                    <div class="col-md-3">
-                                        <input type="text" class="form-control" name="mtk" value="" required>
+                                    <div class="col-md-2">
+                                        <input type="text" class="form-control" id="c_main" name="c_main" value="" required>
                                     </div>
-                                    <div class="col-md-3">
-                                        <input type="text" class="form-control" name="ipa" value="" required>
+                                    <div class="col-md-2">
+                                        <input type="text" class="form-control" id="c_kartu_merah" name="kartu_merah" value="" required>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="text" class="form-control" id="c_kartu_kuning" name="kartu_kuning" value="" required>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="text" class="form-control" id="c_motm" name="motm" value="" required>
                                     </div>
                                 </div>
                             </div>
@@ -226,6 +245,53 @@
 <script src="<?= base_url('vendor') ?>/plugins/jquery/jquery.min.js"></script>
 
 <script type="text/javascript">
+    $(document).ready(function(){
+        $('#pilih-pemain').change(function(){
+            console.log($(this).find(':selected').data('gol'))
+            console.log($(this).find(':selected').data('assist'))
+            console.log($(this).find(':selected').data('main'))
+            console.log($(this).find(':selected').data('kartu_merah'))
+            console.log($(this).find(':selected').data('kartu_kuning'))
+            console.log($(this).find(':selected').data('motm'))
+            $('#c_gol').val($(this).find(':selected').data('gol'))
+            $('#c_assist').val($(this).find(':selected').data('assist'))
+            $('#c_main').val($(this).find(':selected').data('main'))
+            $('#c_kartu_merah').val($(this).find(':selected').data('kartu_merah'))
+            $('#c_kartu_kuning').val($(this).find(':selected').data('kartu_kuning'))
+            $('#c_motm').val($(this).find(':selected').data('motm'))
+        })
+    })
+    const ajax=function(url,params,callback){
+
+
+
+                let xhr=new XMLHttpRequest();
+                xhr.onload=function(){
+                    if( this.status==200 && this.readyState==4 )callback.call( this, this.response )
+                };
+                xhr.open( 'POST', url, true );
+                xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+                xhr.send( params );
+            };
+
+            document.addEventListener('DOMContentLoaded',()=>{
+                document.querySelector('select[id="nisn"]').addEventListener('change',function(e){
+                    ajax( location.href, 'id='+this.value, function(r){
+                        if( !r ){
+                            alert( 'Bad foo!' );
+                            return;
+                        }
+                        let json=JSON.parse( r );
+                        Object.keys( json ).map( k=>{
+                            let field=document.querySelector('input[name="'+k+'"]');
+                            if( field )field.value=json[k]
+                        })
+
+                    });
+                });
+            });
+
+
     $(document).ready(function() {
         $('#nilaiS').dataTable();
     });

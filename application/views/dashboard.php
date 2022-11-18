@@ -205,12 +205,9 @@
                                         <th>BB</th>
                                         <th>Gol</th>
                                         <th>Assist</th>
-                                        <th>Save</th>
-                                        <th>Clean</th>
                                         <th>Main</th>
                                         <th>Merah</th>
                                         <th>Kuning</th>
-                                        <th>Bunuh Diri</th>
                                         <th>MOTM</th>
                                     </tr>
                                 </thead>
@@ -227,16 +224,13 @@
                                         </td>
                                         <td><?= $home->versus ?></td>
                                         <td><?= $home->musim ?></td>
-                                        <td><?= $home->tinggi_badan ?> cm</td>
+                                        <td><?= $home->tinggi_badan ?> cm</td> 
                                         <td><?= $home->berat_badan ?> kg</td>
                                         <td><?= $home->gol ?></td>
                                         <td><?= $home->assist ?></td>
-                                        <td>-</td>
-                                        <td>-</td>
                                         <td><?= $home->main ?></td>
                                         <td><?= $home->kartu_merah ?></td>
                                         <td><?= $home->kartu_kuning ?></td>
-                                        <td>-</td>
                                         <td><?= $home->motm ?></td>
                                         <!-- <td><?=
                                           anchor(site_url('ControllerPertandingan/edit_pertandingan_form/'.$pertandingan->id_pertandingan),'<i class="fas fa-edit"></i> Edit',

@@ -29,6 +29,14 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label class="col-md-12" for="nama_kriteria">Bobot Kepentingan</span>
+                                    </label>
+                                    <div class="col-md-12">
+                                        <input type="text" id="bobot_kepentingan" name="bobot_kepentingan" class="form-control" value="<?= $kriteria->bobot_kepentingan ?>"  placeholder="Ketikkan Bobot Kepentingan" required>
+                                        <span class="text-danger"><?= form_error('bobot_kepentingan') ?></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label class="col-sm-12">Tipe</label>
                                     <div class="col-sm-12">
                                         <select class="form-control" name="tipe" required>

@@ -5,7 +5,7 @@ class KriteriaModel extends CI_Model {
     
     // datatables
     function json() {
-        $this->datatables->select('id_kriteria , nama_kriteria, tipe, CONCAT(nama_kriteria, " (", bobot_preferensi, ") ") AS kriteria_concat');
+        $this->datatables->select('id_kriteria , nama_kriteria,bobot_kepentingan, tipe, CONCAT(bobot_preferensi, " (", nama_kriteria, ") ") AS kriteria_concat');
         $this->datatables->from('kriteria');
         // add this line for join
         $this->datatables->add_column('action',anchor(site_url('controllerKriteria/edit_kriteria_form/$1'),'<i class="fas fa-edit"></i> Edit','class="btn btn-success" title="Edit Data"')." ".anchor(site_url('controllerKriteria/hapus_kriteria_action/$1'),'<i class="fa fa-archive"></i> Hapus','data-nama="$2" class="btn btn-danger hapus" title="Hapus Data"'), 'id_kriteria,nama_kriteria');

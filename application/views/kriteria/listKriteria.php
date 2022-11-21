@@ -17,6 +17,7 @@
                                     <tr>
                                         <th width="5%">No</th>
                                         <th>Nama Kriteria</th>
+                                        <th>Bobot Kepentingan</th>
                                         <th>Tipe</th>
                                         <th>Aksi</th>
                                     </tr>
@@ -64,6 +65,9 @@
                 },
                 {
                     "data": "kriteria_concat"
+                },
+                {
+                    "data": "bobot_kepentingan"
                 },
                 {
                     "data": "tipe"

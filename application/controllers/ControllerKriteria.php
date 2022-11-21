@@ -43,8 +43,11 @@ class ControllerKriteria extends CI_Controller
         $data = [
             'bobot_preferensi' => $this->input->post("bobot_preferensi"),
             'nama_kriteria'    => $this->input->post("nama_kriteria"),
+            'bobot_kepentingan'    => $this->input->post("bobot_kepentingan"),
             'tipe'             => $this->input->post("tipe")
         ];
+
+        // dd($data);
 
         $this->KriteriaModel->insert_kriteria($data);
 
@@ -70,8 +73,11 @@ class ControllerKriteria extends CI_Controller
         $data = [
             'bobot_preferensi' => $this->input->post("bobot_preferensi"),
             'nama_kriteria'    => $this->input->post("nama_kriteria"),
+            'bobot_kepentingan'    => $this->input->post("bobot_kepentingan"),
             'tipe'             => $this->input->post("tipe")
         ];
+
+        // dd($data);
 
         $this->KriteriaModel->update_kriteria($id_kriteria, $data);
 

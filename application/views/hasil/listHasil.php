@@ -115,7 +115,7 @@
                                             <tr>
                                                 <td><?= $no++; ?></td>
                                                 <td><?= $value->nama_lengkap ?></td>
-                                                <td><?= $value->kode_jurusan ?></td>
+                                                <td > - </td>
                                                 <td><?= $value->s ?></td>
                                             </tr>
                                         <?php } ?>

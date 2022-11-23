@@ -10,6 +10,16 @@ class HasilModel extends CI_Model
         // dd($results);
         return $results;
     }
+    
+    function get_all_album_data() {
+
+        $this->db->select ( '*' ); 
+        $this->db->from ( 'Album' );
+        $this->db->join ( 'Category', 'Category.cat_id = Album.cat_id' , 'left' );
+        $this->db->join ( 'Soundtrack', 'Soundtrack.album_id = Album.album_id' , 'left' );
+        $query = $this->db->get ();
+        return $query->result ();
+     }
 
     function get_proses_hitung($nisn)
     {

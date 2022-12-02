@@ -9,7 +9,7 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                         <form class="form-material form-horizontal" method="POST" action="<?= $action; ?>" enctype="multipart/form-data">
-                            <!-- <div class="col-md-6">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="col-md-12" for="bdate">Jurusan</span>
                                     </label>
@@ -31,10 +31,10 @@
                                         <span class="text-danger"><?= form_error('kode_jurusan') ?></span>
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="col-md-12" for="bdate">Gol (C1)</span>
+                                    <label class="col-md-12" for="bdate">Bahasa Indonesia (C1)</span>
                                     </label>
                                     <div class="col-md-12">
                                         <select class="form-control" name="c1" id="c1">
@@ -49,7 +49,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="col-md-12" for="bdate">Assist (C2)</span>
+                                    <label class="col-md-12" for="bdate">Bahasa Inggris (C2)</span>
                                     </label>
                                     <div class="col-md-12">
                                         <select class="form-control" name="c2" id="c2">
@@ -64,7 +64,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="col-md-12" for="bdate">Main (C3)</span>
+                                    <label class="col-md-12" for="bdate">IPA (C3)</span>
                                     </label>
                                     <div class="col-md-12">
                                         <select class="form-control" name="c3" id="c3">
@@ -79,7 +79,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="col-md-12" for="bdate">Kartu Merah (C4)</span>
+                                    <label class="col-md-12" for="bdate">Matematika (C4)</span>
                                     </label>
                                     <div class="col-md-12">
                                         <select class="form-control" name="c4" id="c4">
@@ -89,36 +89,6 @@
                                             <?php } ?>
                                         </select>
                                         <span class="text-danger"><?= form_error('c4') ?></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="col-md-12" for="bdate">Kartu Kuning (C5)</span>
-                                    </label>
-                                    <div class="col-md-12">
-                                        <select class="form-control" name="c5" id="c5">
-                                            <option value="" disabled selected>--Pilih--</option>
-                                            <?php foreach ($allBobot as $value) { ?>
-                                                <option value="<?= $value->nilai_bobot ?>" <?= ($value->nilai_bobot == $c5) ? "selected" : "" ?>><?= $value->tingkat_kepentingan . " = " . $value->nilai_bobot ?></option>
-                                            <?php } ?>
-                                        </select>
-                                        <span class="text-danger"><?= form_error('c5') ?></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="col-md-12" for="bdate">Motm (C6)</span>
-                                    </label>
-                                    <div class="col-md-12">
-                                        <select class="form-control" name="c6" id="c6">
-                                            <option value="" disabled selected>--Pilih--</option>
-                                            <?php foreach ($allBobot as $value) { ?>
-                                                <option value="<?= $value->nilai_bobot ?>" <?= ($value->nilai_bobot == $c6) ? "selected" : "" ?>><?= $value->tingkat_kepentingan . " = " . $value->nilai_bobot ?></option>
-                                            <?php } ?>
-                                        </select>
-                                        <span class="text-danger"><?= form_error('c6') ?></span>
                                     </div>
                                 </div>
                             </div>

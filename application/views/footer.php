@@ -3,7 +3,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
-                        © 2018 - 2020 <b>Drixo</b><span class="d-none d-sm-inline-block"> - Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesdesign.</span>
+                        © 2022 <b>West Ham United</b>
                     </div>
                 </div>
             </div>

@@ -17,170 +17,46 @@
                 <!-- end page title end breadcrumb -->
 
                 <div class="row">
-                    <div class="col-xl-3 col-md-6">
-                        <div class="card mini-stat m-b-30">
-                            <div class="p-3 bg-primary text-white">
-                                <div class="mini-stat-icon">
-                                    <i class="mdi mdi-cube-outline float-right mb-0"></i>
+                    <?php foreach($posisitions as $key => $pos): ?>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card mini-stat m-b-30">
+                                <div class="p-3 bg-primary text-white">
+                                    <div class="mini-stat-icon">
+                                        <i class="mdi mdi-cube-outline float-right mb-0"></i>
+                                    </div>
+                                    <h6 class="text-uppercase mb-0"><?= $key ?></h6>
                                 </div>
-                                <h6 class="text-uppercase mb-0">Goalkeeper</h6>
-                            </div>
-                            <div class="card-body">
-                                <div class="border-bottom pb-4">
-                                    <span class="badge badge-success"> +11% </span> <span class="ml-2 text-muted">Top Perfom</span>
-                                </div>
-                                <div class="table-responsive">
-                                    <table class="table mb-0">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Nama</th>
-                                                <th>No. Punggung</th>
-                                                <!-- <th>Username</th> -->
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td>Mark</td>
-                                                <td>21</td>
-                                                <!-- <td>@mdo</td> -->
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">2</th>
-                                                <td>Jacob</td>
-                                                <td>10</td>
-                                                <!-- <td>@fat</td> -->
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6">
-                        <div class="card mini-stat m-b-30">
-                            <div class="p-3 bg-primary text-white">
-                                <div class="mini-stat-icon">
-                                    <i class="mdi mdi-account-network float-right mb-0"></i>
-                                </div>
-                                <h6 class="text-uppercase mb-0">Defender</h6>
-                            </div>
-                            <div class="card-body">
-                                <div class="border-bottom pb-4">
-                                        <span class="badge badge-success"> +22% </span> <span class="ml-2 text-muted">Top Perfom</span>
-                                </div>
-                                <div class="table-responsive">
-                                    <table class="table mb-0">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Nama</th>
-                                                <th>No. Punggung</th>
-                                                <!-- <th>Username</th> -->
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td>Mark</td>
-                                                <td>21</td>
-                                                <!-- <td>@mdo</td> -->
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">2</th>
-                                                <td>Jacob</td>
-                                                <td>10</td>
-                                                <!-- <td>@fat</td> -->
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                <div class="card-body">
+                                    <div class="border-bottom pb-4">
+                                        <span class="badge badge-success"> +11% </span> <span class="ml-2 text-muted">Top Perfom</span>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table mb-0">
+                                            <thead>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Nama</th>
+                                                    <th>No. Punggung</th>
+                                                    <!-- <th>Username</th> -->
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php foreach ($pos as $k => $player): ?>
+                                                <tr>
+                                                    <th scope="row"><?= $k + 1 ?></th>
+                                                    <td><?= $player->nama_lengkap ?></td>
+                                                    <td><?= $player->no_punggung ?></td>
+                                                    <!-- <td>@mdo</td> -->
+                                                </tr>
+                                                <?php endforeach; ?>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6">
-                        <div class="card mini-stat m-b-30">
-                            <div class="p-3 bg-primary text-white">
-                                <div class="mini-stat-icon">
-                                    <i class="mdi mdi-tag-text-outline float-right mb-0"></i>
-                                </div>
-                                <h6 class="text-uppercase mb-0">Midfielder</h6>
-                            </div>
-                            <div class="card-body">
-                                <div class="border-bottom pb-4">
-                                    <span class="badge badge-danger"> -02% </span> <span class="ml-2 text-muted">Top Perfom</span>
-                                </div>
-                                <div class="table-responsive">
-                                    <table class="table mb-0">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Nama</th>
-                                                <th>No. Punggung</th>
-                                                <!-- <th>Username</th> -->
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td>Mark</td>
-                                                <td>21</td>
-                                                <!-- <td>@mdo</td> -->
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">2</th>
-                                                <td>Jacob</td>
-                                                <td>10</td>
-                                                <!-- <td>@fat</td> -->
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6">
-                        <div class="card mini-stat m-b-30">
-                            <div class="p-3 bg-primary text-white">
-                                <div class="mini-stat-icon">
-                                    <i class="mdi mdi-cart-outline float-right mb-0"></i>
-                                </div>
-                                <h6 class="text-uppercase mb-0">Attackers</h6>
-                            </div>
-                            <div class="card-body">
-                                <div class="border-bottom pb-4">
-                                    <span class="badge badge-success"> +10% </span> <span class="ml-2 text-muted">Top Perfom</span>
-                                </div>
-                                <div class="table-responsive">
-                                    <table class="table mb-0">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Nama</th>
-                                                <th>No. Punggung</th>
-                                                <!-- <th>Username</th> -->
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td>Mark</td>
-                                                <td>21</td>
-                                                <!-- <td>@mdo</td> -->
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">2</th>
-                                                <td>Jacob</td>
-                                                <td>10</td>
-                                                <!-- <td>@fat</td> -->
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
         <div class="row">
             <div class="col-xl-12">
@@ -199,7 +75,7 @@
                                     <tr>
                                         <th width="">No</th>
                                         <th>Pemain</th>
-                                        <th>Pertandingan</th>
+                                        <!-- <th>Pertandingan</th> -->
                                         <th>Musim</th>
                                         <th>TB</th>
                                         <th>BB</th>
@@ -219,19 +95,19 @@
                                         <td>
                                             <?= $home->nama_lengkap ?> <br>
                                             <small>
-                                                <?= $home->umur ?>th (<?= $home->jenis_kelamin ?>)
+                                                <?= $home->umur ?>th (<?= $home->posisi ?>)
                                             </small>        
                                         </td>
-                                        <td><?= $home->versus ?></td>
-                                        <td><?= $home->musim ?></td>
-                                        <td><?= $home->tinggi_badan ?> cm</td> 
-                                        <td><?= $home->berat_badan ?> kg</td>
-                                        <td><?= $home->gol ?></td>
-                                        <td><?= $home->assist ?></td>
-                                        <td><?= $home->main ?></td>
-                                        <td><?= $home->kartu_merah ?></td>
-                                        <td><?= $home->kartu_kuning ?></td>
-                                        <td><?= $home->motm ?></td>
+                                        <!-- <td><?= empty($home->versus) ? '-' : $home->versus ?></td> -->
+                                        <td><?= empty($home->musim) ? '2022' : $home->musim ?></td>
+                                        <td><?= empty($home->tinggi_badan) ? '-' : $home->tinggi_badan ?> cm</td> 
+                                        <td><?= empty($home->berat_badan) ? '-' : $home->berat_badan ?> kg</td>
+                                        <td><?= empty($home->gol) ? '-' : $home->gol ?></td>
+                                        <td><?= empty($home->assist) ? '-' : $home->assist ?></td>
+                                        <td><?= empty($home->main) ? '-' : $home->main ?></td>
+                                        <td><?= empty($home->kartu_merah) ? '-' : $home->kartu_merah ?></td>
+                                        <td><?= empty($home->kartu_kuning) ? '-' : $home->kartu_kuning ?></td>
+                                        <td><?= empty($home->motm) ? '-' : $home->motm ?></td>
                                         <!-- <td><?=
                                           anchor(site_url('ControllerPertandingan/edit_pertandingan_form/'.$pertandingan->id_pertandingan),'<i class="fas fa-edit"></i> Edit',
                                             'class="btn btn-success" title="Edit Data"')." "

@@ -42,9 +42,13 @@ class ControllerSubKriteria extends CI_Controller
             'c2'                    => set_value("c2"),
             'c3'                    => set_value("c3"),
             'c4'                    => set_value("c4"),
-            'allJurusan'            => $this->SubKriteriaModel->allJurusan(),
+            'c5'                    => set_value("c5"),
+            'c6'                    => set_value("c6"),
+            // 'allJurusan'            => $this->SubKriteriaModel->allJurusan(),
             'allBobot'              => $this->SubKriteriaModel->allBobot(),
         ];
+
+        // dd($data);
         $this->load->view('header');
         $this->load->view('sub_kriteria/formSubKriteria', $data);
         $this->load->view('footer');
@@ -52,37 +56,43 @@ class ControllerSubKriteria extends CI_Controller
 
     public function insert_sub_kriteria_action()
     {
-        $this->form_validation->set_rules('kode_jurusan', 'Jurusan', 'required');
+        // $this->form_validation->set_rules('kode_jurusan', 'Jurusan', 'required');
         $this->form_validation->set_rules('c1', 'C1', 'required');
         $this->form_validation->set_rules('c2', 'C2', 'required');
         $this->form_validation->set_rules('c3', 'C3', 'required');
         $this->form_validation->set_rules('c4', 'C4', 'required');
+        $this->form_validation->set_rules('c5', 'C5', 'required');
+        $this->form_validation->set_rules('c6', 'C6', 'required');
         $this->form_validation->set_message('required', '* {field} Harus diisi');
 
-        if ($this->form_validation->run() == FALSE) {
-            $this->insert_sub_kriteria();
-        } else {
+        // if ($this->form_validation->run() == FALSE) {
+        //     $this->insert_sub_kriteria();
+        // } else {
 
-            $cek_jurusan = $this->SubKriteriaModel->get_by_id($this->input->post("kode_jurusan"));
+        //     $cek_jurusan = $this->SubKriteriaModel->get_by_id($this->input->post("kode_jurusan"));
 
-            if ($cek_jurusan) {
-                $this->session->set_flashdata("error_message", "Gagal tambah sub kriteria. Jurusan sudah ada");
-                redirect(site_url("ControllerSubKriteria"));
-            }
+        //     if ($cek_jurusan) {
+        //         $this->session->set_flashdata("error_message", "Gagal tambah sub kriteria. Jurusan sudah ada");
+        //         redirect(site_url("ControllerSubKriteria"));
+        //     }
 
             $data = [
-                'kode_jurusan'  => $this->input->post("kode_jurusan"),
+                // 'kode_jurusan'  => $this->input->post("kode_jurusan"),
                 'c1'            => $this->input->post("c1"),
                 'c2'            => $this->input->post("c2"),
                 'c3'            => $this->input->post("c3"),
                 'c4'            => $this->input->post("c4"),
+                'c5'            => $this->input->post("c5"),
+                'c6'            => $this->input->post("c6"),
             ];
+
+            // dd($data);
 
             $this->SubKriteriaModel->insert($data);
 
             $this->session->set_flashdata("flash_message", "Berhasil tambah data siswa.");
             redirect(site_url("ControllerSubKriteria"));
-        }
+    //     }
     }
 
     public function edit_sub_kriteria($id)

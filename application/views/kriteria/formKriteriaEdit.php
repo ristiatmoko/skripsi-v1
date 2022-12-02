@@ -40,7 +40,7 @@
                                     <label class="col-sm-12">Tipe</label>
                                     <div class="col-sm-12">
                                         <select class="form-control" name="tipe" required>
-                                            <option value="" selected>--Pilih--</option>
+                                            <option value="" selected disabled>--Pilih--</option>
                                             <option <?= $kriteria->tipe == 'Benefit' ? 'selected' : '' ?> value="Benefit">Benefit</option>
                                             <option <?= $kriteria->tipe == 'Cost' ? 'selected' : '' ?>  value="Cost">Cost</option>
                                         </select>

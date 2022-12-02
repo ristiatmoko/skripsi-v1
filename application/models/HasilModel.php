@@ -4,30 +4,30 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class HasilModel extends CI_Model
 {
 
-    function allSiswa()
+    function allPemain()
     {
-        $results = $this->db->join("statistik", "statistik.id_pemain=siswa.id_pemain")->get("siswa")->result();
+        $results = $this->db->join("statistik", "statistik.id_pemain=pemain.id_pemain")->get("pemain")->result();
         // dd($results);
         return $results;
     }
     
-    function get_all_album_data() {
+    // function get_all_album_data() {
 
-        $this->db->select ( '*' ); 
-        $this->db->from ( 'Album' );
-        $this->db->join ( 'Category', 'Category.cat_id = Album.cat_id' , 'left' );
-        $this->db->join ( 'Soundtrack', 'Soundtrack.album_id = Album.album_id' , 'left' );
-        $query = $this->db->get ();
-        return $query->result ();
-     }
+    //     $this->db->select ( '*' ); 
+    //     $this->db->from ( 'Album' );
+    //     $this->db->join ( 'Category', 'Category.cat_id = Album.cat_id' , 'left' );
+    //     $this->db->join ( 'Soundtrack', 'Soundtrack.album_id = Album.album_id' , 'left' );
+    //     $query = $this->db->get ();
+    //     return $query->result ();
+    //  }
 
-    function get_proses_hitung($nisn)
+    function get_proses_hitung($id_pemain)
     {
-        $this->db->select("s, proses_hitung.nisn, kode_jurusan, siswa.nama_lengkap");
+        $this->db->select("s, proses_hitung.id_pemain, kode_jurusan, pemain.nama_lengkap");
         $this->db->from("proses_hitung");
-        $this->db->join("siswa", "proses_hitung.nisn=siswa.nisn");
-        if(!empty($nisn)) {   
-            $this->db->where("proses_hitung.nisn", $nisn);
+        $this->db->join("pemain", "proses_hitung.id_pemain = pemain.id_pemain");
+        if(!empty($id_pemain)) {   
+            $this->db->where("proses_hitung.id_pemain", $id_pemain);
         }
 
         return $this->db->get()->result();

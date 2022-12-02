@@ -3,13 +3,41 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class HomeModel extends CI_Model {
     
-    function json() {
+    function json_each_posisition() {
+        $this->db->select('posisi');
+        $this->db->distinct();
+        $posisi = $this->db->get('pemain')->result();
+        // dd($posisi);
+        $arrayResult = [];
+        foreach($posisi as $pos){
+            $this->db->from('statistik');
+            $this->db->join('pemain', 'pemain.id_pemain=statistik.id_pemain', 'right');
+            $this->db->join('pertandingan', 'pertandingan.id_pertandingan=statistik.id_pertandingan', 'left');
+            $this->db->join('musim', 'musim.id_musim=pertandingan.id_musim', 'left');
+            $this->db->join('proses_hitung', 'proses_hitung.id_pemain=pemain.id_pemain', 'left');
+            $this->db->where('pemain.posisi', $pos->posisi);
+            $this->db->order_by('v', 'desc');
+            // query limit
+            $this->db->limit(1, 0);
+            $arrayResult[$pos->posisi] = $this->db->get()->result();
+        }
+        
+        // dd($arrayResult);
+        return $arrayResult;
+    }
+
+    function json_all_players() {
+
         $this->db->from('statistik');
-        $this->db->join('siswa', 'siswa.id_pemain=statistik.id_pemain');
-        $this->db->join('pertandingan', 'pertandingan.id_pertandingan=statistik.id_pertandingan');
-        $this->db->join('musim', 'musim.id_musim=pertandingan.id_musim');
-        $query = $this->db->get()->result();
-        return $query;
+        $this->db->join('pemain', 'pemain.id_pemain=statistik.id_pemain', 'right');
+        $this->db->join('pertandingan', 'pertandingan.id_pertandingan=statistik.id_pertandingan', 'left');
+        $this->db->join('musim', 'musim.id_musim=pertandingan.id_musim', 'left');
+        $this->db->join('proses_hitung', 'proses_hitung.id_pemain=pemain.id_pemain', 'left');
+        $this->db->order_by('v', 'desc');
+        $arrayResult = $this->db->get()->result();
+        
+        // dd($arrayResult);
+        return $arrayResult;
     }
 
     function insert_musim($data)

@@ -14,10 +14,10 @@
                                     <label class="col-md-12" for="bdate">Pilih Pemain</span>
                                     </label>
                                     <div class="col">
-                                        <select name="nisn" id="pilih-pemain" class="form-control" required>
+                                        <select name="id_pemain" id="pilih-pemain" class="form-control" required>
                                             <option value="" disabled selected>--Pilih--</option>
-                                            <?php foreach ($allSiswa as $value) { ?>
-                                            <option value="<?= $value->nisn ?>"
+                                            <?php foreach ($allPemain as $value) { ?>
+                                            <option value="<?= $value->id_pemain ?>"
                                                 data-gol="<?= $value->gol ?>"
                                                 data-assist="<?= $value->assist ?>"
                                                 data-main="<?= $value->main ?>"
@@ -143,17 +143,18 @@
                             <h3 class="card-title">Hitung Hasil ( Nilai V )</h3>
                         </div>
                         <!-- /.card-header -->
+                        
                         <div class="card-body">
                             <form class="form-material form-horizontal" method="POST" action="<?= site_url('ControllerHasil/hitung_nilai_v') ?>" enctype="multipart/form-data">
                                 <div class="col-md-12">
                                     <div class="row">
-                                        <label class="col-md-12" for="bdate">Pilih Siswa</span>
+                                        <label class="col-md-12" for="bdate">Pilih Pemain</span>
                                         </label>
                                         <div class="col">
-                                            <select name="nisn" id="nisn" class="form-control" required>
+                                            <select name="id_pemain" id="id_pemain" class="form-control" required>
                                                 <option value="" disabled selected>--Pilih--</option>
-                                                <?php foreach ($allSiswa as $value) { ?>
-                                                    <option value="<?= $value->nisn ?>"><?= $value->nama_lengkap ?></option>
+                                                <?php foreach ($allPemain as $value) { ?>
+                                                    <option value="<?= $value->id_pemain ?>"><?= $value->nama_lengkap ?></option>
                                                 <?php } ?>
                                             </select>
                                         </div>
@@ -171,10 +172,11 @@
     </section>
 <?php } ?>
 
-<?php if (!empty($this->session->data_siswa)) { ?>
+<?php if (!empty($this->session->data_pemain)) { ?>
     <?php
-    $nisn = $this->session->data_siswa["nisn"];
-    $get_nama = $this->db->query("SELECT nisn, nama_lengkap FROM siswa WHERE nisn='$nisn'")->row();
+    $id_pemain = $this->session->data_pemain["id_pemain"];
+    $get_nama = $this->db->query("SELECT id_pemain, nama_lengkap FROM pemain WHERE id_pemain='$id_pemain'")->row();
+    // dd($get_nama);
     ?>
     <section class="content">
         <div class="container-fluid">
@@ -182,34 +184,61 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Hasil WP <?= $get_nama->nisn . " - " . $get_nama->nama_lengkap ?></h3>
+                            <h3 class="card-title">Hasil WP <?= $get_nama->id_pemain . " - " . $get_nama->nama_lengkap ?></h3>
                         </div>
                         <!-- /.card-header -->
+                      
+                        <!-- ---------- -->
                         <div class="card-body">
                             <?php
-                            $nisn = $this->session->data_siswa["nisn"];
-                            $data_hasil = $this->db->query("SELECT * FROM proses_hitung WHERE nisn='$nisn'")->result();
+                            $id_pemain = $this->session->data_pemain["id_pemain"];
+                            $data_hasil = $this->db->query("SELECT * FROM proses_hitung WHERE id_pemain='$id_pemain'")->result();
                             // print_r($data_hasil);die;
                             ?>
-                            <?php foreach ($data_hasil as $value) { ?>
+                            <!-- <?php foreach ($data_hasil as $value) { ?> -->
                                 <div class="col-md-12">
-                                    <table class="table table-bordered">
+                                    <table id="nilaiS" class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th width="5%">No</th>
+                                                <th>Nama</th>
+                                                <th>Kode Jurusan</th>
+                                                <th>S</th>
+                                                <th>W</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php $no = 1; ?>
+                                            <?php foreach ($data_hasil as $value) { ?>
+                                                <tr>
+                                                    <td><?= $no++; ?></td>
+                                                    <td><?= $get_nama->nama_lengkap ?></td>
+                                                    <td > - </td>
+                                                    <td><?= $value->s ?></td>
+                                                    <td><?= $value->v ?></td>
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
+                                    <!-- <table class="table table-bordered">
                                         <tbody>
                                             <tr>
+                                                <td style="text-align: center; background-color:antiquewhite;">Nama Lengkap <?= $value->kode_jurusan ?></td>
                                                 <td style="text-align: center; background-color:antiquewhite;">Vektor S <?= $value->kode_jurusan ?></td>
                                                 <td style="text-align: center; background-color:antiquewhite;">Vektor V <?= $value->kode_jurusan ?></td>
                                             </tr>
                                             <tr>
-                                                <td style="text-align: center;"><?= $value->s ?></td>
+                                                <td style="text-align: center;"><?= $get_nama->nama_lengkap ?></td>
+                                                <td style="text-align: center;"><?= $value->v ?></td>
                                                 <td style="text-align: center;"><?= $value->v ?></td>
                                             </tr>
                                         </tbody>
-                                    </table>
+                                    </table> -->
                                 </div>
-                            <?php } ?>
+                            <!-- <?php } ?> -->
                             <?php
-                            $rekomendasi_jurusan = $this->db->query("SELECT MAX(v) nilai_tertinggi, kode_jurusan, (SELECT jurusan FROM jurusan WHERE proses_hitung.kode_jurusan=jurusan.kode_jurusan) as jurusan FROM proses_hitung WHERE nisn='$nisn' GROUP BY kode_jurusan
-                        ORDER BY MAX(v) DESC")->row();
+                        //     $rekomendasi_jurusan = $this->db->query("SELECT MAX(v) nilai_tertinggi, kode_jurusan, (SELECT jurusan FROM jurusan WHERE proses_hitung.kode_jurusan=jurusan.kode_jurusan) as jurusan FROM proses_hitung WHERE nisn='$nisn' GROUP BY kode_jurusan
+                        // ORDER BY MAX(v) DESC")->row();
                             // print_r($rekomendasi_jurusan);die;
                             // , (SELECT jurusan FROM alternatif as b WHERE b.kode_jurusan=a.kode_jurusan) as hasil_jurusan 
                             ?>
@@ -275,7 +304,7 @@
             };
 
             document.addEventListener('DOMContentLoaded',()=>{
-                document.querySelector('select[id="nisn"]').addEventListener('change',function(e){
+                document.querySelector('select[id="id_pemain"]').addEventListener('change',function(e){
                     ajax( location.href, 'id='+this.value, function(r){
                         if( !r ){
                             alert( 'Bad foo!' );

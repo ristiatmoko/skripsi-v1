@@ -9,14 +9,14 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                         <div class="form-group">
-                            <a type="button" href="<?= site_url("ControllerStatistik/insert_statistik"); ?>" class="btn btn-success"> <i class="fa fa-plus"></i> Tambah</a>
+                            <!-- <a type="button" href="<?= site_url("ControllerStatistik/insert_statistik"); ?>" class="btn btn-success"> <i class="fa fa-plus"></i> Tambah</a> -->
                         </div>
                         <div class="table-responsive">
                             <table class="table table-striped">
                                 <thead>
                                 <tr>
-                                    <th width="5%">No</th>
-                                    <th>Nama</th>
+                                    <th width="">No</th>
+                                    <th>Pemain</th>
                                     <th>Gol</th>
                                     <th>Assist</th>
                                     <th>Main</th>
@@ -31,15 +31,20 @@
                                 <?php foreach ($statistiks as $statistik): ?>
                                     <tr>
                                         <td><?= $no++; ?></td>
-                                        <td><?= $statistik->nama_lengkap ?></td>
-                                        <td><?= $statistik->gol ?></td>
-                                        <td><?= $statistik->assist ?></td>
-                                        <td><?= $statistik->main ?></td>
-                                        <td><?= $statistik->kartu_merah ?></td>
-                                        <td><?= $statistik->kartu_kuning ?></td>
-                                        <td><?= $statistik->motm ?></td>
+                                        <td>
+                                            <?= $statistik->nama_lengkap ?> <br>
+                                            <small>
+                                                <?= $statistik->umur ?>th (<?= $statistik->posisi ?>)
+                                            </small>        
+                                        </td>
+                                        <td><?= empty($statistik->gol) ? '-' : $statistik->gol ?></td>
+                                        <td><?= empty($statistik->assist) ? '-' : $statistik->assist ?></td>
+                                        <td><?= empty($statistik->main) ? '-' : $statistik->main ?></td>
+                                        <td><?= empty($statistik->kartu_merah) ? '-' : $statistik->kartu_merah ?></td>
+                                        <td><?= empty($statistik->kartu_kuning) ? '-' : $statistik->kartu_kuning ?></td>
+                                        <td><?= empty($statistik->motm) ? '-' : $statistik->motm ?></td>
                                         <td><?=
-                                          anchor(site_url('ControllerStatistik/edit_statistik_form/'.$statistik->id_statistik),'<i class="fas fa-edit"></i> Edit',
+                                          anchor(site_url('ControllerStatistik/update_statistik/'.$statistik->id_statistik),'<i class="fas fa-edit"></i> Edit',
                                             'class="btn btn-success" title="Edit Data"')." "
                                           .anchor(site_url('ControllerStatistik/hapus_musim_action/'.$statistik->id_statistik),'<i class="fa fa-archive"></i> Hapus',
                                             'data-nama="'.$statistik->id_statistik.'" class="btn btn-danger hapus" title="Hapus Data"') ?></td>

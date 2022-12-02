@@ -16,14 +16,12 @@
                                 <thead>
                                     <tr>
                                         <th width="5%">No</th>
-                                        <!-- <th>Jurusan</th> -->
+                                        <th>Jurusan</th>
                                         <th>C1</th>
                                         <th>C2</th>
                                         <th>C3</th>
                                         <th>C4</th>
-                                        <th>C5</th>
-                                        <th>C6</th>
-                                        <!-- <th>Aksi</th> -->
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -68,6 +66,9 @@
                     "className": "text-center"
                 },
                 {
+                    "data": "jurusan"
+                },
+                {
                     "data": "c1"
                 },
                 {
@@ -80,12 +81,10 @@
                     "data": "c4"
                 },
                 {
-                    "data": "c5"
-                },
-                {
-                    "data": "c6"
-                },
-                
+                    "data": "action",
+                    "orderable": false,
+                    "className": "text-center"
+                }
             ],
             order: [
                 [0, 'desc']

@@ -32,29 +32,38 @@ class ControllerStatistik extends CI_Controller
     }
 
 
-    public function insert_statistik($id)
+    public function update_statistik($id)
     {   
       // dd($id);
-        $this->db->where('id_pemain', $id);
-        $siswa = $this->db->get("siswa")->row();
-        // dd($siswa);
-        $pertandingan = $this->db->get("pertandingan")->result_array();
+        $this->db->join('pemain', 'statistik.id_pemain = pemain.id_pemain');
+        $this->db->where('id_statistik', $id);
+        $statistik = $this->db->get("statistik")->row();
+        // dd($statistik);
+        $pertandingan = $this->db->get("pertandingan")->result();
         $data = [
-          'siswa' => $siswa,
-          'pertandingan' => $pertandingan
+          'statistik' => $statistik,
+          'pertandingan' => $pertandingan,
+          
+          // 'gol' => $gol,
+          // 'assist' => $assist,
+          // 'main' => $main,
+          // 'kartu_merah' => $kartu_merah,
+          // 'kartu_kuning' => $kartu_kuning,
+
         ];
+        
 
         $this->load->view('header');
         $this->load->view('statistik/formStatistik', $data);
         $this->load->view('footer');
     }
 
-    public function insert_statistik_action()
+    public function update_statistik_action($id_pemain)
     {   
         
         $data = [
           // 'allMusim'  => $this->HasilModel->allMusim(),
-          'id_pemain'         => $this->input->post("id_pemain"),
+          // 'id_pemain'         => $this->input->post("id_pemain"),
           'id_pertandingan'  => $this->input->post("id_pertandingan"),
           'gol'           => $this->input->post("gol"),
           'assist'        => $this->input->post("assist"),
@@ -66,7 +75,9 @@ class ControllerStatistik extends CI_Controller
 
         // dd($data);
 
-        $this->StatistikModel->insert_statistik($data);
+        $this->StatistikModel->update_statistik($id_pemain, $data);
+
+        // $this->StatistikModel->insert_statistik($data);
 
         $this->session->set_flashdata("flash_message", "Berhasil tambah data musim.");
         redirect(site_url("ControllerStatistik"));

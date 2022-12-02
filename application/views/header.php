@@ -8,7 +8,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>SPK</title>
+    <title>Westham</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -31,7 +31,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <!-- ------------------------------------------- -->
 
-    <link rel="shortcut icon" href="<?= base_url("assets/images/favicon.ico") ?>">
+    <link rel="shortcut icon" href="<?= base_url("assets/images/wh.png") ?>">
 
     <!--Morris Chart CSS -->
     <link rel="stylesheet" href="<?= base_url("assets/plugins/morris/morris.css") ?>">
@@ -55,8 +55,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="logo">
                     <!-- Image Logo -->
                     <a href="" class="logo">
-                        <img src="assets/images/logo-sm.png" alt="" height="32" class="logo-small">
-                        <img src="assets/images/wh.png" alt="" height="30" class="logo-large">
+                        <img src="<?= base_url('assets/images/logo-sm.png') ?>" alt="" height="32" class="logo-small">
+                        <img src="<?= base_url('assets/images/wh.png') ?>" alt="" height="30" class="logo-large">
                     </a>
 
                 </div>
@@ -67,14 +67,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     
                     <ul class="list-inline float-right mb-0">
                         <!-- Search -->
-                        <li class="list-inline-item dropdown notification-list d-none d-sm-inline-block">
+                        <!-- <li class="list-inline-item dropdown notification-list d-none d-sm-inline-block">
                             <form role="search" class="app-search">
                                 <div class="form-group mb-0"> 
                                     <input type="text" class="form-control" placeholder="Search..">
                                     <button type="submit"><i class="fa fa-search"></i></button>
                                 </div>
                             </form> 
-                        </li>
+                        </li> -->
                         <!-- Messages-->
                         <li class="list-inline-item dropdown notification-list">
                             <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button"
@@ -187,7 +187,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <li class="list-inline-item dropdown notification-list">
                             <a class="nav-link dropdown-toggle arrow-none waves-effect nav-user" data-toggle="dropdown" href="#" role="button"
                                 aria-haspopup="false" aria-expanded="false">
-                                <img src="assets/images/users/user-1.jpg" alt="user" class="rounded-circle">
+                                <img src="<?= base_url('assets/images/users/user-1.jpg') ?>" alt="user" class="rounded-circle">
                             </a>
                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated profile-dropdown ">
                                 <a class="dropdown-item" href="#"><i class="mdi mdi-account-circle m-r-5 text-muted"></i> Profile</a>
@@ -231,7 +231,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </li>
 
                         <li class="has-submenu">
-                            <a href="<?= site_url('ControllerSiswa') ?>"><i class="dripicons-article"></i>Data Pemain</a>
+                            <a href="<?= site_url('ControllerPemain') ?>"><i class="dripicons-article"></i>Data Pemain</a>
                             <ul class="submenu">
                                 <li><a href="<?= site_url('ControllerMusim') ?>"><i class="dripicons-article"></i>Data Musim</a></li>
                                 <li> <a href="<?= site_url('ControllerPertandingan') ?>"><i class="dripicons-article"></i>Data Pertandingan</a></li>

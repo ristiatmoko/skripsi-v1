@@ -19,15 +19,24 @@ class ControllerHome extends CI_Controller
         }
     }
 
-    public function json()
+    public function json_each_posisition()
     {
-        return $this->HomeModel->json();
+        return $this->HomeModel->json_each_posisition();
+    }
+
+    public function json_all_players()
+    {
+        return $this->HomeModel->json_all_players();
     }
 
     public function index()
     {     
+        // dd('a');
         $this->load->view("header");
-        $this->load->view('dashboard', ['homes'=>$this->json()]);
+        $this->load->view('dashboard', [
+            'posisitions' => $this->json_each_posisition(),
+            'homes' => $this->json_all_players()
+        ]);
         $this->load->view("footer");
     }
     

@@ -12,7 +12,7 @@ class ControllerHasil extends CI_Controller
         $this->load->library('form_validation');
         $this->load->library('Datatables');
         $this->load->helper(array('form', 'url', 'download', 'file'));
-        if (empty($this->session->session_login['username'])) {
+        if (empty($this->session->userdata('username'))) {
             $this->session->set_flashdata("pesan", "Anda harus login terlebih dahulu.");
             redirect(site_url("controllerLogin"));
         }
@@ -23,10 +23,11 @@ class ControllerHasil extends CI_Controller
         // print_r($this->session->userdata());die;
         $id_pemain = NULL;
         $data = [
-            'allPemain'  => $this->HasilModel->allPemain(),
+            'allPemain' => $this->HasilModel->allPemain(),
             'nilaiS'    => $this->HasilModel->get_proses_hitung($id_pemain)
 
         ];
+
         $this->load->view('header');
         $this->load->view('hasil/listHasil', $data);
         $this->load->view('footer');
@@ -35,33 +36,41 @@ class ControllerHasil extends CI_Controller
 
     public function prosesHitung()
     {
-        $id_pemain       = (int) $this->input->post("id_pemain");
-        $gol        = (int) $this->input->post("c_gol");
-        $assist     = (int) $this->input->post("c_assist");
-        $main        = (int) $this->input->post("c_main");
-        $kartu_merah        = (int) $this->input->post("kartu_merah");
-        $kartu_kuning        = (int) $this->input->post("kartu_kuning");
-        $motm        = (int) $this->input->post("motm");
+        $id_pemain      = (int) $this->input->post("id_pemain");
+        $gol            = (int) $this->input->post("c_gol");
+        $assist         = (int) $this->input->post("c_assist");
+        $save           = (int) $this->input->post("c_save");
+        $clean          = (int) $this->input->post("c_clean");
+        $main           = (int) $this->input->post("c_main");
+        $kartu_merah    = (int) $this->input->post("c_kartu_merah");
+        $kartu_kuning   = (int) $this->input->post("c_kartu_kuning");
+        $bunuh_diri           = (int) $this->input->post("c_bunuh_diri");
 
 
         $arrayInput = [];
         if($gol != 0){
-            array_push($arrayInput, [$gol, 0.35]);
+            array_push($arrayInput, [$gol, 0.25]);
         }
         if($assist != 0){
-            array_push($arrayInput, [$assist, 0.25]);
+            array_push($arrayInput, [$assist, 0.2]);
+        }
+        if($save != 0){
+            array_push($arrayInput, [$save, 0.1]);
+        }
+        if($clean != 0){
+            array_push($arrayInput, [$clean, 0.1]);
         }
         if($main != 0){
             array_push($arrayInput, [$main, 0.1]);
         }
         if($kartu_merah != 0){
-            array_push($arrayInput, [$kartu_merah, -0.15]);
+            array_push($arrayInput, [$kartu_merah, -0.1]);
         }
         if($kartu_kuning != 0){
-            array_push($arrayInput, [$kartu_kuning, -0.1]);
+            array_push($arrayInput, [$kartu_kuning, -0.05]);
         }
-        if($motm != 0){
-            array_push($arrayInput, [$motm, -0.05]);
+        if($bunuh_diri != 0){
+            array_push($arrayInput, [$bunuh_diri, -0.1]);
         }
 
         // dd($arrayInput);
@@ -83,21 +92,14 @@ class ControllerHasil extends CI_Controller
             // $nilai_s = round((pow($gol, 0.35) * pow($assist, 0.25) * pow($main, 0.1) * pow($kartu_merah, -0.15) * pow($kartu_kuning, -0.1) * pow($motm, -0.05)), 2);
             // dd($nilai_s);
             $data = [
-                'id_pemain'          => $id_pemain,
-                // 'kode_jurusan'  => $value->kode_jurusan,
-                // 'w1'            => $w1,
-                // 'w2'            => $w2,
-                // 'w3'            => $w3,
-                // 'w4'            => $w4,
+                'id_pemain'     => $id_pemain,
                 's'             => round($total, 2)
             ];
 
-            // "kode_jurusan" => $value->kode_jurusan
 
             $cekDataProses = $this->db->get_where("proses_hitung", ["id_pemain" => $id_pemain, ])->row();
             if ($cekDataProses) {
                 $this->db->where("id_pemain", $id_pemain);
-                // $this->db->where("kode_jurusan", $value->kode_jurusan);
                 $this->db->update("proses_hitung", $data);
             } else {
                 $this->db->insert("proses_hitung", $data);
@@ -133,7 +135,6 @@ class ControllerHasil extends CI_Controller
                 ];
                 // print_r($nilai->kode_jurusan. ":". $nilai->total_s. " ");
                 $this->db->where("id_pemain", $value->id_pemain);
-                $this->db->where("kode_jurusan", $value->kode_jurusan);
                 $this->db->update("proses_hitung", $data_v);
             }
         }
@@ -146,25 +147,25 @@ class ControllerHasil extends CI_Controller
 
     }
 
-    public function simpanHitung()
-    {
-        $nisn = $this->input->post("nisn_hasil");
-        $rekomendasi_jurusan = $this->input->post("jurusan");
+    // public function simpanHitung()
+    // {
+    //     $nisn = $this->input->post("nisn_hasil");
+    //     $rekomendasi_jurusan = $this->input->post("jurusan");
 
-        $data = [
-            'nisn'                => $nisn,
-            'rekomendasi_jurusan' => $rekomendasi_jurusan,
-            'tanggal'             => date('Y-m-d H:i:s')
-        ];
+    //     $data = [
+    //         'nisn'                => $nisn,
+    //         'rekomendasi_jurusan' => $rekomendasi_jurusan,
+    //         'tanggal'             => date('Y-m-d H:i:s')
+    //     ];
 
-        $cek_nisn = $this->db->get_where("hasil", ["nisn" => $nisn])->row();
-        if($cek_nisn) {
-            $this->db->where("nisn", $nisn);
-            $this->db->update("hasil", $data);
-        } else {
-            $this->db->insert("hasil", $data);
-        }
+    //     $cek_nisn = $this->db->get_where("hasil", ["nisn" => $nisn])->row();
+    //     if($cek_nisn) {
+    //         $this->db->where("nisn", $nisn);
+    //         $this->db->update("hasil", $data);
+    //     } else {
+    //         $this->db->insert("hasil", $data);
+    //     }
 
-        redirect(site_url('ControllerHasil'));
-    }
+    //     redirect(site_url('ControllerHasil'));
+    // }
 }

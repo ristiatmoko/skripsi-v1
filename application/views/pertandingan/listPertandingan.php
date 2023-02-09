@@ -32,9 +32,9 @@
                                         <td><?= $pertandingan->tanggal ?></td>
                                         <td><?=
                                           anchor(site_url('ControllerPertandingan/edit_pertandingan_form/'.$pertandingan->id_pertandingan),'<i class="fas fa-edit"></i> Edit',
-                                            'class="btn btn-success" title="Edit Data"')." "
+                                            'class="btn btn-danger" title="Edit Data"')." "
                                           .anchor(site_url('ControllerPertandingan/hapus_pertandingan_action/'.$pertandingan->id_pertandingan),'<i class="fa fa-archive"></i> Hapus',
-                                            'data-nama="'.$pertandingan->versus.'" class="btn btn-danger hapus" title="Hapus Data"') ?></td>
+                                            'data-nama="'.$pertandingan->versus.'" class="btn btn-primary hapus" title="Hapus Data"') ?></td>
                                     </tr>
                                 <?php endforeach; ?>
                                 </tbody>

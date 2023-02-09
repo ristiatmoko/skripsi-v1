@@ -19,10 +19,12 @@
                                     <th>Pemain</th>
                                     <th>Gol</th>
                                     <th>Assist</th>
+                                    <th>Save</th>
+                                    <th>Cleansheet</th>
                                     <th>Main</th>
                                     <th>Merah</th>
                                     <th>Kuning</th>
-                                    <th>MOTM</th>
+                                    <th>Bunuh Diri</th>
                                     <th>Aksi</th>
                                 </tr>
                                 </thead>
@@ -39,15 +41,17 @@
                                         </td>
                                         <td><?= empty($statistik->gol) ? '-' : $statistik->gol ?></td>
                                         <td><?= empty($statistik->assist) ? '-' : $statistik->assist ?></td>
+                                        <td><?= empty($statistik->save) ? '-' : $statistik->save ?></td>
+                                        <td><?= empty($statistik->clean) ? '-' : $statistik->clean ?></td>
                                         <td><?= empty($statistik->main) ? '-' : $statistik->main ?></td>
                                         <td><?= empty($statistik->kartu_merah) ? '-' : $statistik->kartu_merah ?></td>
                                         <td><?= empty($statistik->kartu_kuning) ? '-' : $statistik->kartu_kuning ?></td>
-                                        <td><?= empty($statistik->motm) ? '-' : $statistik->motm ?></td>
+                                        <td><?= empty($statistik->bunuh_diri) ? '-' : $statistik->bunuh_diri ?></td>
                                         <td><?=
                                           anchor(site_url('ControllerStatistik/update_statistik/'.$statistik->id_statistik),'<i class="fas fa-edit"></i> Edit',
-                                            'class="btn btn-success" title="Edit Data"')." "
+                                            'class="btn btn-danger" title="Edit Data"')." "
                                           .anchor(site_url('ControllerStatistik/hapus_musim_action/'.$statistik->id_statistik),'<i class="fa fa-archive"></i> Hapus',
-                                            'data-nama="'.$statistik->id_statistik.'" class="btn btn-danger hapus" title="Hapus Data"') ?></td>
+                                            'data-nama="'.$statistik->id_statistik.'" class="btn btn-primary hapus" title="Hapus Data"') ?></td>
                                     </tr>
                                 <?php endforeach; ?>
                                 </tbody>

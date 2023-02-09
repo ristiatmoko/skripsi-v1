@@ -13,7 +13,7 @@ class ControllerHome extends CI_Controller
         $this->load->model('HomeModel');
         $this->load->library('form_validation');
         $this->load->library('upload');
-        if (empty($this->session->session_login['username'])) {
+        if (empty($this->session->userdata['username'])) {
             $this->session->set_flashdata("pesan", "Anda harus login terlebih dahulu.");
             redirect(site_url("controllerLogin"));
         }

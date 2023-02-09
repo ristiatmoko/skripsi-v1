@@ -20,10 +20,12 @@
                                             <option value="<?= $value->id_pemain ?>"
                                                 data-gol="<?= $value->gol ?>"
                                                 data-assist="<?= $value->assist ?>"
+                                                data-save="<?= $value->save ?>"
+                                                data-clean="<?= $value->clean ?>"
                                                 data-main="<?= $value->main ?>"
                                                 data-kartu_merah="<?= $value->kartu_merah ?>"
                                                 data-kartu_kuning="<?= $value->kartu_kuning ?>"
-                                                data-motm="<?= $value->motm ?>"
+                                                data-bunuh_diri="<?= $value->bunuh_diri ?>"
                                             ><?= $value->nama_lengkap ?></option>
                                             <?php } ?>
                                         </select>
@@ -35,43 +37,55 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="row">
-                                    <div class="col-md-2">
+                                    <div class="col-md-1">
                                         C1 (Gol)
                                     </div>
-                                    <div class="col-md-2">
-                                        C2 (Assist)
+                                    <div class="col-md-1">
+                                        C1 (Assist)
                                     </div>
-                                    <div class="col-md-2">
-                                        C3 (Main)
+                                    <div class="col-md-1">
+                                        C3 (Save)
                                     </div>
-                                    <div class="col-md-2">
-                                        C4 (Kartu Merah)
+                                    <div class="col-md-1">
+                                        C4 (Cleansheet)
                                     </div>
-                                    <div class="col-md-2">
-                                        C5 (Kartu Kuning)
+                                    <div class="col-md-1">
+                                        C5 (Main)
                                     </div>
-                                    <div class="col-md-2">
-                                        C6 (Motm)
+                                    <div class="col-md-1">
+                                        C6 (Kartu Merah)
+                                    </div>
+                                    <div class="col-md-1">
+                                        C7 (Kartu Kuning)
+                                    </div>
+                                    <div class="col-md-1">
+                                        C8 (Bunuh Diri)
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-2">
+                                    <div class="col-md-1">
                                         <input type="text" class="form-control" id="c_gol" name="c_gol" value="" required>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-1">
                                         <input type="text" class="form-control" id="c_assist" name="c_assist" value="" required>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-1">
+                                        <input type="text" class="form-control" id="c_save" name="c_save" value="" required>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <input type="text" class="form-control" id="c_clean" name="c_clean" value="" required>
+                                    </div>
+                                    <div class="col-md-1">
                                         <input type="text" class="form-control" id="c_main" name="c_main" value="" required>
                                     </div>
-                                    <div class="col-md-2">
-                                        <input type="text" class="form-control" id="c_kartu_merah" name="kartu_merah" value="" required>
+                                    <div class="col-md-1">
+                                        <input type="text" class="form-control" id="c_kartu_merah" name="c_kartu_merah" value="" required>
                                     </div>
-                                    <div class="col-md-2">
-                                        <input type="text" class="form-control" id="c_kartu_kuning" name="kartu_kuning" value="" required>
+                                    <div class="col-md-1">
+                                        <input type="text" class="form-control" id="c_kartu_kuning" name="c_kartu_kuning" value="" required>
                                     </div>
-                                    <div class="col-md-2">
-                                        <input type="text" class="form-control" id="c_motm" name="motm" value="" required>
+                                    <div class="col-md-1">
+                                        <input type="text" class="form-control" id="c_bunuh_diri" name="c_bunuh_diri" value="" required>
                                     </div>
                                 </div>
                             </div>
@@ -105,7 +119,6 @@
                                         <tr>
                                             <th width="5%">No</th>
                                             <th>Nama</th>
-                                            <th>Kode Jurusan</th>
                                             <th>S</th>
                                         </tr>
                                     </thead>
@@ -115,7 +128,6 @@
                                             <tr>
                                                 <td><?= $no++; ?></td>
                                                 <td><?= $value->nama_lengkap ?></td>
-                                                <td > - </td>
                                                 <td><?= $value->s ?></td>
                                             </tr>
                                         <?php } ?>
@@ -184,7 +196,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Hasil WP <?= $get_nama->id_pemain . " - " . $get_nama->nama_lengkap ?></h3>
+                            <h3 class="card-title">Hasil WP </h3>
                         </div>
                         <!-- /.card-header -->
                       
@@ -192,19 +204,17 @@
                         <div class="card-body">
                             <?php
                             $id_pemain = $this->session->data_pemain["id_pemain"];
-                            $data_hasil = $this->db->query("SELECT * FROM proses_hitung WHERE id_pemain='$id_pemain'")->result();
+                            $data_hasil = $this->db->query("SELECT proses_hitung.*, pemain.nama_lengkap FROM proses_hitung join pemain on proses_hitung.id_pemain = pemain.id_pemain ORDER BY proses_hitung.v DESC")->result();
                             // print_r($data_hasil);die;
                             ?>
-                            <!-- <?php foreach ($data_hasil as $value) { ?> -->
                                 <div class="col-md-12">
-                                    <table id="nilaiS" class="table table-striped">
+                                    <table id="nilaiV" class="table table-striped">
                                         <thead>
                                             <tr>
                                                 <th width="5%">No</th>
                                                 <th>Nama</th>
-                                                <th>Kode Jurusan</th>
                                                 <th>S</th>
-                                                <th>W</th>
+                                                <th>V</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -212,56 +222,16 @@
                                             <?php foreach ($data_hasil as $value) { ?>
                                                 <tr>
                                                     <td><?= $no++; ?></td>
-                                                    <td><?= $get_nama->nama_lengkap ?></td>
-                                                    <td > - </td>
+                                                    <td><?= $value->nama_lengkap ?></td>
                                                     <td><?= $value->s ?></td>
                                                     <td><?= $value->v ?></td>
                                                 </tr>
                                             <?php } ?>
                                         </tbody>
                                     </table>
-                                    <!-- <table class="table table-bordered">
-                                        <tbody>
-                                            <tr>
-                                                <td style="text-align: center; background-color:antiquewhite;">Nama Lengkap <?= $value->kode_jurusan ?></td>
-                                                <td style="text-align: center; background-color:antiquewhite;">Vektor S <?= $value->kode_jurusan ?></td>
-                                                <td style="text-align: center; background-color:antiquewhite;">Vektor V <?= $value->kode_jurusan ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td style="text-align: center;"><?= $get_nama->nama_lengkap ?></td>
-                                                <td style="text-align: center;"><?= $value->v ?></td>
-                                                <td style="text-align: center;"><?= $value->v ?></td>
-                                            </tr>
-                                        </tbody>
-                                    </table> -->
                                 </div>
-                            <!-- <?php } ?> -->
-                            <?php
-                        //     $rekomendasi_jurusan = $this->db->query("SELECT MAX(v) nilai_tertinggi, kode_jurusan, (SELECT jurusan FROM jurusan WHERE proses_hitung.kode_jurusan=jurusan.kode_jurusan) as jurusan FROM proses_hitung WHERE nisn='$nisn' GROUP BY kode_jurusan
-                        // ORDER BY MAX(v) DESC")->row();
-                            // print_r($rekomendasi_jurusan);die;
-                            // , (SELECT jurusan FROM alternatif as b WHERE b.kode_jurusan=a.kode_jurusan) as hasil_jurusan 
-                            ?>
-                            <div class="col-md-12">
-                                <div class="alert alert-success alert-dismissible">
-                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                    <h4><i class="icon fa fa-check"></i> Rekomendasi Jurusan</h4>
-                                    <?= $rekomendasi_jurusan->jurusan ?>
-                                </div>
-                            </div>
-                            <form class="form-material form-horizontal" method="POST" action="<?= site_url('ControllerHasil/simpanHitung') ?>" enctype="multipart/form-data" id="form1">
-                                <input type="hidden" name="nisn_hasil" value="<?= $nisn ?>">
-                                <input type="hidden" name="jurusan" value="<?= $rekomendasi_jurusan->jurusan ?>">
-                                <div class="col-md-12">
-                                    <div class="border border-light p-3 mb-4">
-                                        <div class="text-center">
-                                            <a href="#" onclick="document.getElementById('form1').submit();" class="btn btn-app">
-                                                <i class="fas fa-save"></i> Simpan
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
+                            
+                           
                         </div>
                         <!-- /.card-body -->
                     </div>
@@ -276,20 +246,18 @@
 <script type="text/javascript">
     $(document).ready(function(){
         $('#pilih-pemain').change(function(){
-            console.log($(this).find(':selected').data('gol'))
-            console.log($(this).find(':selected').data('assist'))
-            console.log($(this).find(':selected').data('main'))
-            console.log($(this).find(':selected').data('kartu_merah'))
-            console.log($(this).find(':selected').data('kartu_kuning'))
-            console.log($(this).find(':selected').data('motm'))
             $('#c_gol').val($(this).find(':selected').data('gol'))
             $('#c_assist').val($(this).find(':selected').data('assist'))
             $('#c_main').val($(this).find(':selected').data('main'))
             $('#c_kartu_merah').val($(this).find(':selected').data('kartu_merah'))
             $('#c_kartu_kuning').val($(this).find(':selected').data('kartu_kuning'))
             $('#c_motm').val($(this).find(':selected').data('motm'))
+            $('#c_save').val($(this).find(':selected').data('save'))
+            $('#c_clean').val($(this).find(':selected').data('clean'))
+            $('#c_bunuh_diri').val($(this).find(':selected').data('bunuh_diri'))
         })
     })
+
     const ajax=function(url,params,callback){
 
 
@@ -324,4 +292,5 @@
     $(document).ready(function() {
         $('#nilaiS').dataTable();
     });
+ 
 </script>

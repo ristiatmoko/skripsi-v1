@@ -1707,8 +1707,8 @@ body {
 }
 
 .alert-danger {
-  color: #508aeb;
-  background-color: #d0e0fa;
+  color: #721c24;
+  background-color: #f8d7da;
 }
 
 .alert-danger .alert-link {

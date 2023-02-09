@@ -10,6 +10,12 @@ class HasilModel extends CI_Model
         // dd($results);
         return $results;
     }
+    function all_proses_hitung()
+    {
+        $results = $this->db->select('proses_hitung.*, pemain.nama_lengkap')->from('proses_hitung')->join("pemain", "pemain.id_pemain=proses_hitung.id_pemain")->get()->result();
+        // dd($results);
+        return $results;
+    }
     
     // function get_all_album_data() {
 
@@ -23,31 +29,32 @@ class HasilModel extends CI_Model
 
     function get_proses_hitung($id_pemain)
     {
-        $this->db->select("s, proses_hitung.id_pemain, kode_jurusan, pemain.nama_lengkap");
+        $this->db->select("s, proses_hitung.id_pemain, pemain.nama_lengkap");
         $this->db->from("proses_hitung");
         $this->db->join("pemain", "proses_hitung.id_pemain = pemain.id_pemain");
         if(!empty($id_pemain)) {   
             $this->db->where("proses_hitung.id_pemain", $id_pemain);
+            // $this->db->order_by('v', 'desc');
         }
 
         return $this->db->get()->result();
     }
 
-    function json_hasil() {
-        $this->datatables->select("a.nisn, a.rekomendasi_jurusan, b.nama_lengkap");
-        $this->datatables->from('hasil as a');
-        //add this line for join
-        $this->datatables->join('siswa as b', 'a.nisn=b.nisn');
-        return $this->datatables->generate();
-    }
+    // function json_hasil() {
+    //     $this->datatables->select("a.nisn, a.rekomendasi_jurusan, b.nama_lengkap");
+    //     $this->datatables->from('hasil as a');
+    //     //add this line for join
+    //     $this->datatables->join('siswa as b', 'a.nisn=b.nisn');
+    //     return $this->datatables->generate();
+    // }
 
-    function get_data_hasil()
-    {
-        $this->db->select('a.*, b.*');
-        $this->db->from("hasil as a");
-        $this->db->join("siswa as b", "a.nisn=b.nisn");
-        return $this->db->get()->result();
-    }
+    // function get_data_hasil()
+    // {
+    //     $this->db->select('a.*, b.*');
+    //     $this->db->from("hasil as a");
+    //     $this->db->join("siswa as b", "a.nisn=b.nisn");
+    //     return $this->db->get()->result();
+    // }
 }
 
 /* End of file Login_model.php */

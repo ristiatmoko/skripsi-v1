@@ -9,13 +9,15 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <div class="form-group">
-                            <a type="button" href="<?= site_url("ControllerStatistik"); ?>" class="btn btn-danger"></i> Statistik</a>
-                            <!-- anchor(site_url('controllerStatistik/insert_statistik/$1'),'<i class="fas fa-edit"></i> Statistik','class="btn btn-danger btn-sm btn-block" title="Edit Data"')." ". -->
-                        </div>
+                       
                         <div class="form-group">
                             <a type="button" href="<?= site_url("ControllerPemain/insert_pemain"); ?>" class="btn btn-success"> <i class="fa fa-plus"></i> Tambah</a>
                         </div>
+
+                        <div class="form-group">
+                            <a type="button" href="<?= site_url("ControllerStatistik"); ?>" class="btn btn-danger"></i> Statistik</a>
+                        </div>
+                        
                         <div class="table-responsive">
                             <table id="mytable_siswa" class="table table-striped">
                                 <thead>
@@ -42,9 +44,9 @@
                                         <td><?= $pemain->umur ?></td>
                                         <td><?=
                                           anchor(site_url('ControllerPemain/edit_pemain/'.$pemain->id_pemain),'<i class="fas fa-edit"></i> Edit',
-                                            'class="btn btn-success" title="Edit Data"')." "
+                                            'class="btn btn-danger" title="Edit Data"')." "
                                           .anchor(site_url('ControllerPemain/hapus_pemain/'.$pemain->id_pemain),'<i class="fa fa-archive"></i> Hapus',
-                                            'data-nama="'.$pemain->nama_lengkap.'" class="btn btn-danger hapus" title="Hapus Data"') ?></td>
+                                            'data-nama="'.$pemain->nama_lengkap.'" class="btn btn-primary hapus" title="Hapus Data"') ?></td>
                                     </tr>
                                 <?php endforeach; ?>
                             </table>

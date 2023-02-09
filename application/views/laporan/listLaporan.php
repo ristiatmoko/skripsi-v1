@@ -1,3 +1,6 @@
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.4/css/buttons.dataTables.min.css">
 <section class="content">
     <div class="container-fluid">
         <div class="row">
@@ -17,10 +20,21 @@
                                     <thead>
                                         <tr>
                                             <th width="5%">No</th>
-                                            <th>Siswa</th>
-                                            <th>Rekomendasi Jurusan</th>
+                                            <th>Nama Pemain</th>
+                                            <th>V</th>
+                                            <th>S</th>
                                         </tr>
                                     </thead>
+                                    <tbody>
+                                        <?php foreach($nilaiS as $i => $row): ?>
+                                        <tr>
+                                            <td><?= $i+1 ?></td>
+                                            <td><?= $row->nama_lengkap ?></td>
+                                            <td><?= $row->v ?></td>
+                                            <td><?= $row->s ?></td>
+                                        </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -37,50 +51,10 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-        $.fn.dataTableExt.oApi.fnPagingInfo = function(oSettings) {
-            return {
-                "iStart": oSettings._iDisplayStart,
-                "iEnd": oSettings.fnDisplayEnd(),
-                "iLength": oSettings._iDisplayLength,
-                "iTotal": oSettings.fnRecordsTotal(),
-                "iFilteredTotal": oSettings.fnRecordsDisplay(),
-                "iPage": Math.ceil(oSettings._iDisplayStart / oSettings._iDisplayLength),
-                "iTotalPages": Math.ceil(oSettings.fnRecordsDisplay() / oSettings._iDisplayLength)
-            };
-        };
-
-        var u = $("#mytable").dataTable({
-            "processing": true,
-            "serverSide": true,
-            "oLanguage": {
-                sProcessing: "Loading. . ."
-            },
-            "ajax": {
-                "url": "<?= site_url('ControllerLaporan/json_hasil') ?>",
-                "type": "POST"
-            },
-            "columns": [{
-                    "data": "nisn",
-                    "orderable": false,
-                    "className": "text-center"
-                },
-                {
-                    "data": "nama_lengkap"
-                },
-                {
-                    "data": "rekomendasi_jurusan"
-                },
-            ],
-            order: [
-                [1, 'asc']
-            ],
-            rowCallback: function(row, data, iDisplayIndex) {
-                var info = this.fnPagingInfo();
-                var page = info.iPage;
-                var length = info.iLength;
-                var index = page * length + (iDisplayIndex + 1);
-                $('td:eq(0)', row).html(index);
-            }
-        });
+        let t = $('#mytable').DataTable( {
+            lengthChange: false,
+            buttons: [ 'copy', 'excel', 'pdf', 'colvis' ]
+        } );
+        t.buttons().container().insertBefore( '#mytable_filter' );
     });
 </script>

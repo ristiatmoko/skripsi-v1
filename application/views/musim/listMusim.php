@@ -28,9 +28,9 @@
                                         <td><?= $musim->musim ?></td>
                                         <td><?=
                                           anchor(site_url('controllerMusim/edit_musim_form/'.$musim->id_musim),'<i class="fas fa-edit"></i> Edit',
-                                            'class="btn btn-success" title="Edit Data"')." "
+                                            'class="btn btn-danger" title="Edit Data"')." "
                                           .anchor(site_url('controllerMusim/hapus_musim_action/'.$musim->id_musim),'<i class="fa fa-archive"></i> Hapus',
-                                            'data-nama="'.$musim->musim.'" class="btn btn-danger hapus" title="Hapus Data"') ?></td>
+                                            'data-nama="'.$musim->musim.'" class="btn btn-primary hapus" title="Hapus Data"') ?></td>
                                     </tr>
                                 <?php endforeach; ?>
                                 </tbody>

@@ -9,7 +9,7 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                         <div class="form-group">
-                            <a type="button" href="<?= site_url("controllerBobot/insert_bobot"); ?>" class="btn btn-primary"> <i class="fa fa-plus"></i> Tambah</a>
+                            <a type="button" href="<?= site_url("controllerBobot/insert_bobot"); ?>" class="btn btn-success"> <i class="fa fa-plus"></i> Tambah</a>
                         </div>
                         <div class="table-responsive">
                             <table id="mytable_bobot" class="table table-striped">

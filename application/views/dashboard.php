@@ -4,12 +4,12 @@
     <div class="row">
                     <div class="col-sm-12">
                         <div class="page-title-box">
-                            <div class="btn-group float-right">
+                            <!-- <div class="btn-group float-right">
                                 <ol class="breadcrumb hide-phone p-0 m-0">
                                     <li class="breadcrumb-item"><a href="#">Drixo</a></li>
                                     <li class="breadcrumb-item active">Dashboard</li>
                                 </ol>
-                            </div>
+                            </div> -->
                             <h4 class="page-title">Dashboard</h4>
                         </div>
                     </div>
@@ -28,7 +28,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="border-bottom pb-4">
-                                        <span class="badge badge-success"> +11% </span> <span class="ml-2 text-muted">Top Perfom</span>
+                                        <span class="badge badge-success"> </span> <span class="ml-2 text-muted">Top Perfom</span>
                                     </div>
                                     <div class="table-responsive">
                                         <table class="table mb-0">

@@ -4,7 +4,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Tambah Data Siswa</h3>
+                        <h3 class="card-title">Tambah Data Bobot</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -35,8 +35,8 @@
 
                             <div class="col-md-6">
                                 <div class="col-md-12">
-                                    <button type="submit" class="btn btn-primary waves-effect waves-light m-r-10">Simpan</button>
-                                    <a type="button" href="<?= site_url('controllerBobot'); ?>" class="btn btn-danger waves-effect waves-light">Cancel</a>
+                                    <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Simpan</button>
+                                    <a type="button" href="<?= site_url('controllerBobot'); ?>" class="btn btn-primary waves-effect waves-light">Cancel</a>
                                 </div>
                             </div>
                         </form>

@@ -52,6 +52,20 @@
                                         <span class="text-danger"><?= form_error('assist') ?></span>
                                     </div>
                                 </div>
+                                    <label class="col-md-12" for="tanggal">Save</span>
+                                    </label>
+                                    <div class="col-md-12">
+                                        <input type="number" id="save" name="save" class="form-control"  value="<?= $statistik->save ?>" placeholder="Ketikkan save" >
+                                        <span class="text-danger"><?= form_error('save') ?></span>
+                                    </div>
+                                </div>
+                                    <label class="col-md-12" for="tanggal">Cleansheet</span>
+                                    </label>
+                                    <div class="col-md-12">
+                                        <input type="number" id="clean" name="clean" class="form-control"  value="<?= $statistik->clean ?>" placeholder="Ketikkan clean" >
+                                        <span class="text-danger"><?= form_error('clean') ?></span>
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <label class="col-md-12" for="tanggal">Main</span>
                                     </label>
@@ -77,11 +91,11 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-12" for="tanggal">MOTM</span>
+                                    <label class="col-md-12" for="tanggal">Bunuh Diri</span>
                                     </label>
                                     <div class="col-md-12">
-                                        <input type="number" id="motm" name="motm" class="form-control" value="<?= $statistik->motm ?>" placeholder="Ketikkan motm" >
-                                        <span class="text-danger"><?= form_error('motm') ?></span>
+                                        <input type="number" id="bunuh_diri" name="bunuh_diri" class="form-control" value="<?= $statistik->bunuh_diri ?>" placeholder="Ketikkan bunuh_diri" >
+                                        <span class="text-danger"><?= form_error('bunuh_diri') ?></span>
                                     </div>
                                 </div>
 

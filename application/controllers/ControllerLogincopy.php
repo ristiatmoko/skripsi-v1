@@ -12,61 +12,66 @@ class ControllerLogin extends CI_Controller
         $this->load->model('LoginModel');
     }
 
-    // public function index()
+    public function index()
+    {
+        if (empty($this->session->userdata("username"))) {
+            $this->load->view("viewLogin");
+        } else {
+            redirect("ControllerHome"); 
+        }
+    }
+
+    // private function _login()
     // {
-    //     if (empty($this->session->userdata("username"))) {
-    //         $this->load->view("viewLogin");
+    //     $username = $this->input->post('username');
+    //     $password = $this->input->post('password');
+
+    //     $user  = $this->db->get_where('user', ['username' => $username])->row_array();
+
+    //     if($user) {
+
     //     } else {
-    //         redirect("ControllerHome"); 
+    //        $this->session->set_flashdata('message', '<div class="alert alert success"') 
     //     }
     // }
 
-    public function index()
+    public function cekStatusLogin()
     {
         $this->form_validation->set_rules('username', 'Username', 'required|trim');
         $this->form_validation->set_rules('password', 'Password', 'required|trim');
         // $this->form_validation->set_message('required', '* {field} Harus diisi');
 
-        if ($this->form_validation->run() == false) {
+        if ($this->form_validation->run() == FALSE) {
             if (empty($this->session->userdata("username"))) {
                 $this->load->view("viewLogin");
             } else {
                 redirect("ControllerHome"); 
             }
         } else {
-            $this->login();
-        }
-    }
 
-    private function login()
-    {
-        $username = $this->input->post('username');
-        $password = $this->input->post('password');
+            $username = $this->input->post("username", TRUE);
+            $password = md5($this->input->post("password", TRUE));
 
-        $user  = $this->db->get_where('user', ['username' => $username])->row_array();
-        if($user) {
-            if($user['is_active'] == 1) {
-                if($password == $user['password']) {
-                    $data = [
-                        'username' => $user['username'],
-                        'level' => $user['level'],
-                    ];
-                    $this->session->set_userdata($data);
-                    redirect('ControllerHome');
-                } else {
-                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> password salah</div>');
-                    redirect('controllerLogin');
-                }
+            $where = ["username" => $username];
+            $cek = $this->LoginModel->validasi("user", $where)->row_array();
+            $username_db = $cek['username'];
+            $password_db = $cek['password'];
+            if ($username == $username && $password == $password_db) {
+
+                $data_session = [
+                    'username' => $username_db,
+                    'level'    => $cek['level'],
+                ];
+
+                $this->session->set_userdata("session_login", $data_session);
+                redirect(site_url("controllerHome"));
             } else {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Username tidak aktif</div>');
-                redirect('controllerLogin');
+                $this->session->set_flashdata("pesan", "Username atau Password salah.");
+                redirect("ControllerLogin");
             }
-        } else {
-           $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Username salah</div>');
-           redirect('controllerLogin');
         }
     }
- 
+
     public function ubahPasssword()
     {
         $this->load->view("admin/header");

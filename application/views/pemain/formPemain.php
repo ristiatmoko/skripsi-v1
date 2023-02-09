@@ -33,8 +33,8 @@
                                             <option value="" selected disabled>--Pilih--</option>
                                             <option value="Goalkeeper" >Goalkeeper</option>
                                             <option value="Defenders" >Defender</option>
-                                            <option value="Midfielders" >Midfielders</option>
-                                            <option value="Attackers" >Attackers</option>
+                                            <option value="Midfielders" >Midfielder</option>
+                                            <option value="Attackers" >Attacker</option>
                                         </select>
                                         <span class="text-danger"><?= form_error('posisi') ?></span>
                                     </div>
@@ -64,8 +64,8 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <button type="submit" class="btn btn-primary waves-effect waves-light m-r-10">Simpan</button>
-                                    <a type="button" href="<?= site_url('controllerPemain'); ?>" class="btn btn-danger waves-effect waves-light">Cancel</a>
+                                    <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Simpan</button>
+                                    <a type="button" href="<?= site_url('controllerPemain'); ?>" class="btn btn-primary waves-effect waves-light">Cancel</a>
                                 </div>
                             </div>
                         </form>

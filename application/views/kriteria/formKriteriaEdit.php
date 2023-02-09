@@ -48,8 +48,8 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <button type="submit" class="btn btn-primary waves-effect waves-light m-r-10">Simpan</button>
-                                    <a type="button" href="<?= site_url('controllerKriteria'); ?>" class="btn btn-danger waves-effect waves-light">Cancel</a>
+                                    <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Simpan</button>
+                                    <a type="button" href="<?= site_url('controllerKriteria'); ?>" class="btn btn-primary waves-effect waves-light">Cancel</a>
                                 </div>
                             </div>
                         </form>

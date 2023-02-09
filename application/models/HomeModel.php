@@ -18,7 +18,7 @@ class HomeModel extends CI_Model {
             $this->db->where('pemain.posisi', $pos->posisi);
             $this->db->order_by('v', 'desc');
             // query limit
-            $this->db->limit(1, 0);
+            $this->db->limit(5, 0);
             $arrayResult[$pos->posisi] = $this->db->get()->result();
         }
         

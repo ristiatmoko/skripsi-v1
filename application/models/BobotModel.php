@@ -8,7 +8,7 @@ class BobotModel extends CI_Model {
         $this->datatables->select('a.id_bobot, a.tingkat_kepentingan, a.nilai_bobot');
         $this->datatables->from('bobot as a');
         //add this line for join
-        $this->datatables->add_column('action',anchor(site_url('controllerBobot/edit_bobot/$1'),'<i class="fas fa-edit"></i> Edit','class="btn btn-success" title="Edit Data"')." ".anchor(site_url('controllerBobot/hapus_bobot/$1'),'<i class="fa fa-archive"></i> Hapus','data-nama_bobot="$2" class="btn btn-danger hapus" title="Hapus Data"'), 'id_bobot,tingkat_kepentingan');
+        $this->datatables->add_column('action',anchor(site_url('controllerBobot/edit_bobot/$1'),'<i class="fas fa-edit"></i> Edit','class="btn btn-danger" title="Edit Data"')." ".anchor(site_url('controllerBobot/hapus_bobot/$1'),'<i class="fa fa-archive"></i> Hapus','data-nama_bobot="$2" class="btn btn-primary hapus" title="Hapus Data"'), 'id_bobot,tingkat_kepentingan');
         return $this->datatables->generate();
     }
 

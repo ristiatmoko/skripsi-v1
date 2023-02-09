@@ -12,7 +12,7 @@ class ControllerStatistik extends CI_Controller
         $this->load->library('form_validation');
         $this->load->library('Datatables');
         $this->load->helper(array('form', 'url', 'download', 'file'));
-        if (empty($this->session->session_login['username'])) {
+        if (empty($this->session->userdata('username'))) {
             $this->session->set_flashdata("pesan", "Anda harus login terlebih dahulu.");
             redirect(site_url("controllerLogin"));
         }
@@ -67,10 +67,12 @@ class ControllerStatistik extends CI_Controller
           'id_pertandingan'  => $this->input->post("id_pertandingan"),
           'gol'           => $this->input->post("gol"),
           'assist'        => $this->input->post("assist"),
+          'save'          => $this->input->post("save"),
+          'clean'         => $this->input->post("clean"),
           'main'          => $this->input->post("main"),
           'kartu_merah'   => $this->input->post("kartu_merah"),
           'kartu_kuning'  => $this->input->post("kartu_kuning"),
-          'motm'          => $this->input->post("motm"),
+          'bunuh_diri'    => $this->input->post("bunuh_diri"),
         ];
 
         // dd($data);

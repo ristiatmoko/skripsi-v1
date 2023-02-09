@@ -12,7 +12,7 @@ class ControllerLaporan extends CI_Controller
         $this->load->library('form_validation');
         $this->load->library('Datatables');
         $this->load->helper(array('form', 'url', 'download', 'file'));
-        if (empty($this->session->session_login['username'])) {
+        if (empty($this->session->userdata('username'))) {
             $this->session->set_flashdata("pesan", "Anda harus login terlebih dahulu.");
             redirect(site_url("controllerLogin"));
         }
@@ -26,8 +26,11 @@ class ControllerLaporan extends CI_Controller
 
     public function index()
     {
+        $data = [
+            'nilaiS' => $this->HasilModel->all_proses_hitung()
+        ];
         $this->load->view('header');
-        $this->load->view('laporan/listLaporan');
+        $this->load->view('laporan/listLaporan', $data);
         $this->load->view('footer');
     }
 

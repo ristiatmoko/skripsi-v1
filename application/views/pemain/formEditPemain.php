@@ -37,9 +37,9 @@
                                         <select class="form-control" name="posisi" required>
                                             <option value="" selected disabled>--Pilih--</option>
                                             <option <?= $pemain->posisi == 'Goalkeeper' ? 'selected' : '' ?>  value="Goalkeeper" >Goalkeeper</option>
-                                            <option <?= $pemain->posisi == 'Defender' ? 'selected' : '' ?>  value="Defender" >Defender</option>
-                                            <option <?= $pemain->posisi == 'Midfielders' ? 'selected' : '' ?>  value="Midfielders" >Midfielders</option>
-                                            <option <?= $pemain->posisi == 'Attackers' ? 'selected' : '' ?>  value="Attackers" >Attackers</option>
+                                            <option <?= $pemain->posisi == 'Defender' ? 'selected' : '' ?>  value="Defenders" >Defender</option>
+                                            <option <?= $pemain->posisi == 'Midfielders' ? 'selected' : '' ?>  value="Midfielders" >Midfielder</option>
+                                            <option <?= $pemain->posisi == 'Attackers' ? 'selected' : '' ?>  value="Attackers" >Attacker</option>
                                         </select>
                                         <span class="text-danger"><?= form_error('posisi') ?></span>
                                     </div>
@@ -70,8 +70,8 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <button type="submit" class="btn btn-primary waves-effect waves-light m-r-10">Simpan</button>
-                                    <a type="button" href="<?= site_url('controllerPemain'); ?>" class="btn btn-danger waves-effect waves-light">Cancel</a>
+                                    <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Simpan</button>
+                                    <a type="button" href="<?= site_url('controllerPemain'); ?>" class="btn btn-primary waves-effect waves-light">Cancel</a>
                                 </div>
                             </div>
                         </form>

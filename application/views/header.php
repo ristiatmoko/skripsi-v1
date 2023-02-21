@@ -61,7 +61,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="logo">
                     <!-- Image Logo -->
                     <a href="" class="logo">
-                        <img src="<?= base_url('assets/images/logo-sm.png') ?>" alt="" height="32" class="logo-small">
+                        <!-- <img src="<?= base_url('assets/images/wh.png') ?>" alt="" height="32" class="logo-small"> -->
                         <img src="<?= base_url('assets/images/wh.png') ?>" alt="" height="30" class="logo-large">
                     </a>
 

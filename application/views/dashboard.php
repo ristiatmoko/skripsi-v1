@@ -146,7 +146,7 @@
                 <!-- /.card -->
             </div>
         </div>
-    </div>risti.15@students.amikom.ac.id
+    </div>
 <!-- </section>
 </div>
 </div> -->

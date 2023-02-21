@@ -14,7 +14,7 @@ class ControllerBobot extends CI_Controller
         $this->load->helper(array('form', 'url', 'download', 'file'));
         if (empty($this->session->userdata('username'))) {
             $this->session->set_flashdata("pesan", "Anda harus login terlebih dahulu.");
-            redirect(site_url("controllerLogin"));
+            redirect(site_url("ControllerLogin"));
         }
     }
 
@@ -63,7 +63,7 @@ class ControllerBobot extends CI_Controller
             $this->BobotModel->insert_bobot($data);
 
             $this->session->set_flashdata("flash_message", "Berhasil tambah data bobot.");
-            redirect(site_url("controllerBobot"));
+            redirect(site_url("ControllerBobot"));
         }
     }
 
@@ -71,7 +71,7 @@ class ControllerBobot extends CI_Controller
     {
         $data_bobot = $this->BobotModel->get_by_id($id);
         $data = [
-            'action'                => site_url("controllerBobot/edit_bobot_action"),
+            'action'                => site_url("ControllerBobot/edit_bobot_action"),
             'id_bobot'              => set_value("id_bobot", $data_bobot->id_bobot),
             'tingkat_kepentingan'   => set_value("tingkat_kepentingan", $data_bobot->tingkat_kepentingan),
             'nilai_bobot'           => set_value("nilai_bobot", $data_bobot->nilai_bobot),
@@ -93,7 +93,7 @@ class ControllerBobot extends CI_Controller
         $this->BobotModel->update_bobot($id_bobot, $data);
 
         $this->session->set_flashdata("flash_message", "Berhasil update data bobot.");
-        redirect(site_url("controllerBobot"));
+        redirect(site_url("ControllerBobot"));
     }
 
     public function hapus_bobot($id)
@@ -103,11 +103,11 @@ class ControllerBobot extends CI_Controller
         if ($data_bobot) {
             $this->BobotModel->delete_bobot($id);
             $this->session->set_flashdata("flash_message", "Berhasil hapus data bobot.");
-            redirect(site_url("controllerBobot"));
+            redirect(site_url("ControllerBobot"));
 
         } else {
             $this->session->set_flashdata("error_message", "Gagal hapus data bobot.");
-            redirect(site_url("controllerBobot"));
+            redirect(site_url("ControllerBobot"));
 
         }
     }

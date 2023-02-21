@@ -14,7 +14,7 @@ class ControllerKriteria extends CI_Controller
         $this->load->helper(array('form', 'url', 'download', 'file'));
         if (empty($this->session->userdata('username'))) {
             $this->session->set_flashdata("pesan", "Anda harus login terlebih dahulu.");
-            redirect(site_url("controllerLogin"));
+            redirect(site_url("ControllerLogin"));
         }
     }
 
@@ -52,7 +52,7 @@ class ControllerKriteria extends CI_Controller
         $this->KriteriaModel->insert_kriteria($data);
 
         $this->session->set_flashdata("flash_message", "Berhasil tambah data kriteria.");
-        redirect(site_url("controllerKriteria"));
+        redirect(site_url("ControllerKriteria"));
     }
 
     public function edit_kriteria_form($id_kriteria)
@@ -83,7 +83,7 @@ class ControllerKriteria extends CI_Controller
 
 
         $this->session->set_flashdata("flash_message", "Berhasil update data kriteria.");
-        redirect(site_url("controllerKriteria"));
+        redirect(site_url("ControllerKriteria"));
     }
 
     public function hapus_kriteria_action($id_kriteria)
@@ -92,10 +92,10 @@ class ControllerKriteria extends CI_Controller
         if ($data_kriteria) {
             $this->KriteriaModel->delete_kriteria($id_kriteria);
             $this->session->set_flashdata("flash_message", "Berhasil hapus data Kriteria.");
-            redirect(site_url("controllerKriteria"));
+            redirect(site_url("ControllerKriteria"));
         } else {
             $this->session->set_flashdata("error_message", "Gagal hapus data Kriteria.");
-            redirect(site_url("controllerKriteria"));
+            redirect(site_url("ControllerKriteria"));
         }
     }
 }

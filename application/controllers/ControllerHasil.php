@@ -14,7 +14,7 @@ class ControllerHasil extends CI_Controller
         $this->load->helper(array('form', 'url', 'download', 'file'));
         if (empty($this->session->userdata('username'))) {
             $this->session->set_flashdata("pesan", "Anda harus login terlebih dahulu.");
-            redirect(site_url("controllerLogin"));
+            redirect(site_url("ControllerLogin"));
         }
     }
 
@@ -120,7 +120,7 @@ class ControllerHasil extends CI_Controller
             'nilai_v'          => 'ada',
         ];
         $this->session->set_userdata("nilaiV", $data_session);
-        redirect(site_url('ControllerHasil'));
+        redirect(site_url('ControllerHasil?step-1'));
     }   
 
     public function hitung_nilai_v() {

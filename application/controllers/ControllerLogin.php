@@ -55,15 +55,15 @@ class ControllerLogin extends CI_Controller
                     redirect('ControllerHome');
                 } else {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Password Salah</div>');
-                    redirect('controllerLogin');
+                    redirect('ControllerLogin');
                 }
             } else {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Username Tidak Aktif</div>');
-                redirect('controllerLogin');
+                redirect('ControllerLogin');
             }
         } else {
            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Username salah</div>');
-           redirect('controllerLogin');
+           redirect('ControllerLogin');
         }
     }
  
@@ -100,7 +100,7 @@ class ControllerLogin extends CI_Controller
             ];
             $this->LoginModel->updateUser($username_lama, $data);
             $this->session->set_flashdata("success", "Berhasil ubah password");
-            redirect("controllerHome");
+            redirect("ControllerHome");
         }
     }
 
@@ -112,6 +112,6 @@ class ControllerLogin extends CI_Controller
 
         $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Logout Berhasil</div>');
         
-        redirect("controllerLogin");
+        redirect("ControllerLogin");
     }
 }

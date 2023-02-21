@@ -14,7 +14,7 @@ class ControllerPemain extends CI_Controller
         $this->load->helper(array('form', 'url', 'download', 'file'));
         if (empty($this->session->userdata('username'))) {
             $this->session->set_flashdata("pesan", "Anda harus login terlebih dahulu.");
-            redirect(site_url("controllerLogin"));
+            redirect(site_url("ControllerLogin"));
         }
     }
 
@@ -37,23 +37,13 @@ class ControllerPemain extends CI_Controller
     {   
         
         $this->load->view('header');
-        $this->load->view('pemain/formpemain');
+        $this->load->view('pemain/formPemain');
         $this->load->view('footer');
     }
 
     public function insert_pemain_action()
     {
-        // $this->form_validation->set_rules('nisn', 'NISN', 'required');
-        // $this->form_validation->set_rules('nama_lengkap', 'Nama lengkap', 'required');
-        // $this->form_validation->set_rules('jenis_kelamin', 'Jenis kelamin', 'required');
-        // $this->form_validation->set_rules('tinggi_badan', 'Tinggi Badan', 'required');
-        // $this->form_validation->set_rules('berat_badan', 'Berat Badan', 'required');
-        // $this->form_validation->set_rules('umur', 'Umur', 'required');
-        // $this->form_validation->set_message('required', '* {field} Harus diisi');
-
         $data = [
-            // 'allMusim'  => $this->HasilModel->allMusim(),
-            // 'id_pertandingan' => $this->input->post("id_pertandingan"),
             'no_punggung'   => $this->input->post("no_punggung"),
             'nama_lengkap'  => $this->input->post("nama_lengkap"),
             'posisi'        => $this->input->post("posisi"),
@@ -63,38 +53,11 @@ class ControllerPemain extends CI_Controller
   
           ];
   
-        //   dd($data);
-  
           $this->PemainModel->insert_pemain($data);
   
           $this->session->set_flashdata("flash_message", "Berhasil tambah data musim.");
           redirect(site_url("ControllerPemain"));
-        // if ($this->form_validation->run() == FALSE) {
-        //     $this->insert_siswa();
-        // } else {
-
-        //     $cek_nis_siswa = $this->SiswaModel->get_by_id($this->input->post("nisn"));
-
-        //     if ($cek_nis_siswa) {
-        //         $this->session->set_flashdata("error_message", "Gagal tambah siswa. NIS sudah ada, atas nama " . $cek_nis_siswa->nama_lengkap);
-        //         redirect(site_url("controllerSiswa"));
-        //     }
-
-        //     $data = [
-        //         'nisn'              => $this->input->post("nisn"),
-        //         'nama_lengkap'      => $this->input->post("nama_lengkap"),
-        //         // 'tanggal_lahir'   => date('Y-m-d', strtotime($this->input->post("tanggal_lahir"))),
-        //         'jenis_kelamin'     => $this->input->post("jenis_kelamin"),
-        //         'tinggi_badan'      => $this->input->post("tinggi_badan"),
-        //         'berat_badan'       => $this->input->post("berat_badan"),
-        //         'umur'              => $this->input->post("umur"),
-        //     ];
-
-        //     $this->SiswaModel->insert_siswa($data);
-
-        //     $this->session->set_flashdata("flash_message", "Berhasil tambah data siswa.");
-        //     redirect(site_url("controllerSiswa"));
-        // }
+       
     }
 
     public function statistik_pemain($nisn)
@@ -145,10 +108,10 @@ class ControllerPemain extends CI_Controller
         if ($data_pemain) {
             $this->PemainModel->delete_pemain($id_pemain);
             $this->session->set_flashdata("flash_message", "Berhasil hapus data Pemain.");
-            redirect(site_url("controllerPemain"));
+            redirect(site_url("ControllerPemain"));
         } else {
             $this->session->set_flashdata("error_message", "Gagal hapus data Pemain.");
-            redirect(site_url("controllerPemain"));
+            redirect(site_url("ControllerPemain"));
         }
     }
 }

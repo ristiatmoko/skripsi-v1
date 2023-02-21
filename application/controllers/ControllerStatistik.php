@@ -14,7 +14,7 @@ class ControllerStatistik extends CI_Controller
         $this->load->helper(array('form', 'url', 'download', 'file'));
         if (empty($this->session->userdata('username'))) {
             $this->session->set_flashdata("pesan", "Anda harus login terlebih dahulu.");
-            redirect(site_url("controllerLogin"));
+            redirect(site_url("ControllerLogin"));
         }
     }
 

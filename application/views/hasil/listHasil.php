@@ -9,11 +9,11 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                         <form class="form-material form-horizontal" method="POST" action="<?= site_url('ControllerHasil/prosesHitung') ?>" enctype="multipart/form-data">
-                            <div class="col-md-12">
-                                <div class="row">
-                                    <label class="col-md-12" for="bdate">Pilih Pemain</span>
-                                    </label>
-                                    <div class="col">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="bdate">Pilih Pemain</span>
+                                        </label>
                                         <select name="id_pemain" id="pilih-pemain" class="form-control" required>
                                             <option value="" disabled selected>--Pilih--</option>
                                             <?php foreach ($allPemain as $value) { ?>
@@ -32,64 +32,81 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-12" style="margin-top: 5px;">
-                                <label for="">Nilai :</label>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="row">
-                                    <div class="col-md-1">
-                                        C1 (Gol)
-                                    </div>
-                                    <div class="col-md-1">
-                                        C1 (Assist)
-                                    </div>
-                                    <div class="col-md-1">
-                                        C3 (Save)
-                                    </div>
-                                    <div class="col-md-1">
-                                        C4 (Cleansheet)
-                                    </div>
-                                    <div class="col-md-1">
-                                        C5 (Main)
-                                    </div>
-                                    <div class="col-md-1">
-                                        C6 (Kartu Merah)
-                                    </div>
-                                    <div class="col-md-1">
-                                        C7 (Kartu Kuning)
-                                    </div>
-                                    <div class="col-md-1">
-                                        C8 (Bunuh Diri)
+                            <div class="row">
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <label for="">Nilai :</label>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-1">
+                            </div>
+                            <div class="row">
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <label for="c_gol">C1 (Gol)</span>
+                                        </label>
                                         <input type="text" class="form-control" id="c_gol" name="c_gol" value="" required>
+                                        <span class="text-danger"><?= form_error('c_gol') ?></span>
                                     </div>
-                                    <div class="col-md-1">
+                                </div>
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <label for="c_assist">C2 (Assist)</span>
+                                        </label>
                                         <input type="text" class="form-control" id="c_assist" name="c_assist" value="" required>
+                                        <span class="text-danger"><?= form_error('c_assist') ?></span>
                                     </div>
-                                    <div class="col-md-1">
+                                </div>
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <label for="c_save">C3 (Save)</span>
+                                        </label>
                                         <input type="text" class="form-control" id="c_save" name="c_save" value="" required>
+                                        <span class="text-danger"><?= form_error('c_save') ?></span>
                                     </div>
-                                    <div class="col-md-1">
+                                </div>
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <label for="c_clean">C4 (Clean)</span>
+                                        </label>
                                         <input type="text" class="form-control" id="c_clean" name="c_clean" value="" required>
+                                        <span class="text-danger"><?= form_error('c_clean') ?></span>
                                     </div>
-                                    <div class="col-md-1">
+                                </div>
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <label for="c_main">C5 (Main)</span>
+                                        </label>
                                         <input type="text" class="form-control" id="c_main" name="c_main" value="" required>
+                                        <span class="text-danger"><?= form_error('c_main') ?></span>
                                     </div>
-                                    <div class="col-md-1">
+                                </div>
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <label for="c_kartu_merah">C6 (Kartu Merah)</span>
+                                        </label>
                                         <input type="text" class="form-control" id="c_kartu_merah" name="c_kartu_merah" value="" required>
+                                        <span class="text-danger"><?= form_error('c_kartu_merah') ?></span>
                                     </div>
-                                    <div class="col-md-1">
+                                </div>
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <label for="c_kartu_kuning">C7 (Kartu Kuning)</span>
+                                        </label>
                                         <input type="text" class="form-control" id="c_kartu_kuning" name="c_kartu_kuning" value="" required>
+                                        <span class="text-danger"><?= form_error('c_kartu_kuning') ?></span>
                                     </div>
-                                    <div class="col-md-1">
+                                </div>
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <label for="c_bunuh_diri">C8 (Bunuh Diri)</span>
+                                        </label>
                                         <input type="text" class="form-control" id="c_bunuh_diri" name="c_bunuh_diri" value="" required>
+                                        <span class="text-danger"><?= form_error('c_bunuh_diri') ?></span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-12" style="margin-top: 15px;">
+                               
+                            <div class="col-md-12 text-right">
                                 <button type="submit" class="btn btn-primary">Hitung Nilai S</button>
                             </div>
                     </div>

@@ -51,7 +51,9 @@
                                 <h4 class="text-muted text-center font-18"><b>Sign In</b></h4>
         
                                 <div class="p-2">
-                                    <?= $this->session->flashdata('message'); ?>
+                                    <?php if($this->session->userdata('message')): ?>
+                                        <?= $this->session->flashdata('message'); ?>
+                                    <?php endif; ?>
                                     <form action="<?= site_url('ControllerLogin/index') ?>" method="post">
         
                                         <div class="form-group row">

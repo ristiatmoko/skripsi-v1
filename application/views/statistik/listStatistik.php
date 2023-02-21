@@ -12,7 +12,7 @@
                             <!-- <a type="button" href="<?= site_url("ControllerStatistik/insert_statistik"); ?>" class="btn btn-success"> <i class="fa fa-plus"></i> Tambah</a> -->
                         </div>
                         <div class="table-responsive">
-                            <table class="table table-striped">
+                            <table id="mytable_statistik" class="table table-striped">
                                 <thead>
                                 <tr>
                                     <th width="">No</th>
@@ -68,6 +68,11 @@
 <script src="<?= base_url('vendor') ?>/plugins/jquery/jquery.min.js"></script>
 
 <script>
+
+    $(document).ready(function() {
+        $('#mytable_statistik').dataTable();
+    });
+
 
     $(document).on('click', '.hapus', function(e) {
         e.preventDefault();

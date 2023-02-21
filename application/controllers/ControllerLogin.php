@@ -54,11 +54,11 @@ class ControllerLogin extends CI_Controller
                     $this->session->set_userdata($data);
                     redirect('ControllerHome');
                 } else {
-                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> password salah</div>');
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Password Salah</div>');
                     redirect('controllerLogin');
                 }
             } else {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Username tidak aktif</div>');
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Username Tidak Aktif</div>');
                 redirect('controllerLogin');
             }
         } else {
@@ -67,6 +67,14 @@ class ControllerLogin extends CI_Controller
         }
     }
  
+
+    public function admin()
+    {
+        $this->load->view("header");
+        $this->load->view("admin");
+        $this->load->view("footer");
+    }
+
     public function ubahPasssword()
     {
         $this->load->view("admin/header");
@@ -98,7 +106,12 @@ class ControllerLogin extends CI_Controller
 
     public function logout()
     {
-        $this->session->sess_destroy();
+        // $this->session->sess_destroy();
+        $this->session->unset_userdata('username');
+        $this->session->unset_userdata('level');
+
+        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Logout Berhasil</div>');
+        
         redirect("controllerLogin");
     }
 }

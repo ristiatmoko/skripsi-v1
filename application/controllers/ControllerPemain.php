@@ -35,18 +35,7 @@ class ControllerPemain extends CI_Controller
 
     public function insert_pemain()
     {   
-        // $slug = url_title(set_value("nisn"), '-', true);
-        // $data = [
-        //     'aksi'          => 'tambah',
-        //     'action'        => site_url("controllerSiswa/insert_siswa_action"),
-        //     'slug'          => $slug,
-        //     'nisn'          => set_value("nisn"),
-        //     'nama_lengkap'  => set_value("nama_lengkap"),
-        //     'jenis_kelamin' => set_value("jenis_kelamin"),
-        //     'tinggi_badan'  => set_value("tinggi_badan"),
-        //     'berat_badan'   => set_value("berat_badan"),
-        //     'umur'          => set_value("umur"),
-        // ];
+        
         $this->load->view('header');
         $this->load->view('pemain/formpemain');
         $this->load->view('footer');

@@ -12,17 +12,15 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                         <div class="col-md-12">
-                            <div class="form-group">
-                                <a type="button" target="_BLANK" href="<?= site_url("controllerLaporan/cetak"); ?>" class="btn btn-warning"> <i class="fa fa-print"></i> Cetak</a>
-                            </div>
+                            
                             <div class="table-responsive">
                                 <table id="mytable" class="table table-striped">
                                     <thead>
                                         <tr>
                                             <th width="5%">No</th>
                                             <th>Nama Pemain</th>
-                                            <th>V</th>
                                             <th>S</th>
+                                            <th>V</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -30,8 +28,8 @@
                                         <tr>
                                             <td><?= $i+1 ?></td>
                                             <td><?= $row->nama_lengkap ?></td>
-                                            <td><?= $row->v ?></td>
                                             <td><?= $row->s ?></td>
+                                            <td><?= $row->v ?></td>
                                         </tr>
                                         <?php endforeach; ?>
                                     </tbody>

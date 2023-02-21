@@ -44,7 +44,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </head>
 
 <body>
-
+<style>
+@media print {
+   #no-print {
+      visibility: hidden;
+   }
+}
+</style>
     <!-- Navigation Bar-->
     <div class="wrapper">
     <header id="topnav">
@@ -78,7 +84,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       
                         <!-- User-->
                         <li class="list-inline-item dropdown notification-list">
-                            <a class="nav-link dropdown-toggle arrow-none waves-effect nav-user" data-toggle="dropdown" href="#" role="button"
+                            <a id="no-print" class="nav-link dropdown-toggle arrow-none waves-effect nav-user" data-toggle="dropdown" href="#" role="button"
                                 aria-haspopup="false" aria-expanded="false">
                                 <img src="<?= base_url('assets/images/users/admin.jpg') ?>" alt="user" class="rounded-circle">
                             </a>
@@ -159,7 +165,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <li class="has-submenu">
                             <a href="<?= site_url('controllerLaporan') ?>"><i class="dripicons-meter"></i>Laporan</a>
                         </li>
-
+                        <?php if($this->session->userdata['level'] == 'superadmin'): ?>
+                        <li class="has-submenu float-right">
+                            <a href="<?= site_url('controllerAdmin') ?>"><i class="dripicons-user"></i>Admin</a>
+                        </li>
+                        <?php endif; ?>
                     </ul>
                     <!-- End navigation menu -->
                 </div> <!-- end #navigation -->

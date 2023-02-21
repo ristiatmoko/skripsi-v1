@@ -18,6 +18,7 @@ class ControllerHasil extends CI_Controller
         }
     }
 
+   
     public function index()
     {
         // print_r($this->session->userdata());die;
@@ -44,7 +45,7 @@ class ControllerHasil extends CI_Controller
         $main           = (int) $this->input->post("c_main");
         $kartu_merah    = (int) $this->input->post("c_kartu_merah");
         $kartu_kuning   = (int) $this->input->post("c_kartu_kuning");
-        $bunuh_diri           = (int) $this->input->post("c_bunuh_diri");
+        $bunuh_diri     = (int) $this->input->post("c_bunuh_diri");
 
 
         $arrayInput = [];
@@ -147,25 +148,5 @@ class ControllerHasil extends CI_Controller
 
     }
 
-    // public function simpanHitung()
-    // {
-    //     $nisn = $this->input->post("nisn_hasil");
-    //     $rekomendasi_jurusan = $this->input->post("jurusan");
-
-    //     $data = [
-    //         'nisn'                => $nisn,
-    //         'rekomendasi_jurusan' => $rekomendasi_jurusan,
-    //         'tanggal'             => date('Y-m-d H:i:s')
-    //     ];
-
-    //     $cek_nisn = $this->db->get_where("hasil", ["nisn" => $nisn])->row();
-    //     if($cek_nisn) {
-    //         $this->db->where("nisn", $nisn);
-    //         $this->db->update("hasil", $data);
-    //     } else {
-    //         $this->db->insert("hasil", $data);
-    //     }
-
-    //     redirect(site_url('ControllerHasil'));
-    // }
+ 
 }

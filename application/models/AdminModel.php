@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class LoginModel extends CI_Model {
+class AdminModel extends CI_Model {
 
 	function allUsers()
     {
@@ -22,6 +22,24 @@ class LoginModel extends CI_Model {
 	function insert_admin($data)
     {
         $this->db->insert('user', $data);
+    }
+
+	function get_by_id($id)
+    {
+        $this->db->where('id', $id);
+        return $this->db->get("user")->row();
+    }
+
+    function update_admin($id, $data)
+    {
+        $this->db->where("id", $id);
+        $this->db->update("user", $data);
+    }
+
+    function delete_admin($id)
+    {
+        $this->db->where("id", $id);
+        $this->db->delete("user");
     }
 }
 

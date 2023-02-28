@@ -9,6 +9,7 @@ class ControllerHasil extends CI_Controller
         parent::__construct();
         $this->load->database();
         $this->load->model('HasilModel');
+        $this->load->model('KriteriaModel');
         $this->load->library('form_validation');
         $this->load->library('Datatables');
         $this->load->helper(array('form', 'url', 'download', 'file'));
@@ -18,7 +19,7 @@ class ControllerHasil extends CI_Controller
         }
     }
 
-   
+
     public function index()
     {
         // print_r($this->session->userdata());die;
@@ -49,34 +50,84 @@ class ControllerHasil extends CI_Controller
 
 
         $arrayInput = [];
-        if($gol != 0){
-            array_push($arrayInput, [$gol, 0.25]);
+
+
+        $sumAllWeight = $this
+            ->db
+            ->query("SELECT SUM(bobot_kepentingan) as bobot FROM `kriteria`")->row()->bobot;
+
+        // dd($sumAllWeight->bobot);
+        if ($gol != 0) {
+            $weight = $this->db
+                ->select('bobot_kepentingan')
+                ->from('kriteria')
+                ->where('bobot_preferensi', 'C1')->get()->row();
+            $finalWeight = $weight->bobot_kepentingan / $sumAllWeight;
+            // dd($finalWeight);
+            array_push($arrayInput, [$gol, $finalWeight]);
         }
-        if($assist != 0){
-            array_push($arrayInput, [$assist, 0.2]);
+        if ($assist != 0) {
+            $weight = $this->db
+                ->select('bobot_kepentingan')
+                ->from('kriteria')
+                ->where('bobot_preferensi', 'C2')->get()->row();
+            $finalWeight = $weight->bobot_kepentingan / $sumAllWeight;
+            array_push($arrayInput, [$assist, $finalWeight]);
         }
-        if($save != 0){
-            array_push($arrayInput, [$save, 0.1]);
+        if ($save != 0) {
+            $weight = $this->db
+                ->select('bobot_kepentingan')
+                ->from('kriteria')
+                ->where('bobot_preferensi', 'C3')->get()->row();
+            $finalWeight = $weight->bobot_kepentingan / $sumAllWeight;
+            array_push($arrayInput, [$save, $finalWeight]);
         }
-        if($clean != 0){
-            array_push($arrayInput, [$clean, 0.1]);
+        if ($clean != 0) {
+            $weight = $this->db
+                ->select('bobot_kepentingan')
+                ->from('kriteria')
+                ->where('bobot_preferensi', 'C4')->get()->row();
+            $finalWeight = $weight->bobot_kepentingan / $sumAllWeight;
+            array_push($arrayInput, [$clean, $finalWeight]);
         }
-        if($main != 0){
-            array_push($arrayInput, [$main, 0.1]);
+        if ($main != 0) {
+            $weight = $this->db
+                ->select('bobot_kepentingan')
+                ->from('kriteria')
+                ->where('bobot_preferensi', 'C5')->get()->row();
+            $finalWeight = $weight->bobot_kepentingan / $sumAllWeight;
+            array_push($arrayInput, [$main, $finalWeight]);
         }
-        if($kartu_merah != 0){
-            array_push($arrayInput, [$kartu_merah, -0.1]);
+        // dd($kartu_merah);
+        if ($kartu_merah != 0) {
+            $weight = $this->db
+                ->select('bobot_kepentingan')
+                ->from('kriteria')
+                ->where('bobot_preferensi', 'C6')->get()->row();
+            $finalWeight = $weight->bobot_kepentingan / $sumAllWeight;
+            // dd(-abs($finalWeight));
+            array_push($arrayInput, [$kartu_merah, -abs($finalWeight)]);
         }
-        if($kartu_kuning != 0){
-            array_push($arrayInput, [$kartu_kuning, -0.05]);
+        if ($kartu_kuning != 0) {
+            $weight = $this->db
+                ->select('bobot_kepentingan')
+                ->from('kriteria')
+                ->where('bobot_preferensi', 'C7')->get()->row();
+            $finalWeight = $weight->bobot_kepentingan / $sumAllWeight;
+            array_push($arrayInput, [$kartu_kuning, -abs($finalWeight)]);
         }
-        if($bunuh_diri != 0){
-            array_push($arrayInput, [$bunuh_diri, -0.1]);
+        if ($bunuh_diri != 0) {
+            $weight = $this->db
+                ->select('bobot_kepentingan')
+                ->from('kriteria')
+                ->where('bobot_preferensi', 'C8')->get()->row();
+            $finalWeight = $weight->bobot_kepentingan / $sumAllWeight;
+            array_push($arrayInput, [$bunuh_diri, -abs($finalWeight)]);
         }
 
         // dd($arrayInput);
         $total = 1;
-        foreach($arrayInput as $ai){
+        foreach ($arrayInput as $ai) {
             $total *= pow($ai[0], $ai[1]);
         }
 
@@ -90,21 +141,21 @@ class ControllerHasil extends CI_Controller
         //     $w2 = round($value->c2 / ($value->c1 + $value->c2 + $value->c3 + $value->c4), 2);
         //     $w3 = round($value->c3 / ($value->c1 + $value->c2 + $value->c3 + $value->c4), 2);
         //     $w4 = round($value->c4 / ($value->c1 + $value->c2 + $value->c3 + $value->c4), 2);
-            // $nilai_s = round((pow($gol, 0.35) * pow($assist, 0.25) * pow($main, 0.1) * pow($kartu_merah, -0.15) * pow($kartu_kuning, -0.1) * pow($motm, -0.05)), 2);
-            // dd($nilai_s);
-            $data = [
-                'id_pemain'     => $id_pemain,
-                's'             => round($total, 2)
-            ];
+        // $nilai_s = round((pow($gol, 0.35) * pow($assist, 0.25) * pow($main, 0.1) * pow($kartu_merah, -0.15) * pow($kartu_kuning, -0.1) * pow($motm, -0.05)), 2);
+        // dd($nilai_s);
+        $data = [
+            'id_pemain'     => $id_pemain,
+            's'             => round($total, 2)
+        ];
 
 
-            $cekDataProses = $this->db->get_where("proses_hitung", ["id_pemain" => $id_pemain, ])->row();
-            if ($cekDataProses) {
-                $this->db->where("id_pemain", $id_pemain);
-                $this->db->update("proses_hitung", $data);
-            } else {
-                $this->db->insert("proses_hitung", $data);
-            }
+        $cekDataProses = $this->db->get_where("proses_hitung", ["id_pemain" => $id_pemain])->row();
+        if ($cekDataProses) {
+            $this->db->where("id_pemain", $id_pemain);
+            $this->db->update("proses_hitung", $data);
+        } else {
+            $this->db->insert("proses_hitung", $data);
+        }
         // }
 
         $data_session = [
@@ -115,15 +166,17 @@ class ControllerHasil extends CI_Controller
         redirect(site_url('ControllerHasil'));
     }
 
-    public function sesi_hitung_v() {
+    public function sesi_hitung_v()
+    {
         $data_session = [
             'nilai_v'          => 'ada',
         ];
         $this->session->set_userdata("nilaiV", $data_session);
         redirect(site_url('ControllerHasil?step-1'));
-    }   
+    }
 
-    public function hitung_nilai_v() {
+    public function hitung_nilai_v()
+    {
         $id_pemain       = $this->input->post("id_pemain");
 
         $data_hitung = $this->HasilModel->get_proses_hitung($id_pemain);
@@ -145,8 +198,5 @@ class ControllerHasil extends CI_Controller
         ];
         $this->session->set_userdata("data_pemain", $data_session);
         redirect(site_url('ControllerHasil'));
-
     }
-
- 
 }

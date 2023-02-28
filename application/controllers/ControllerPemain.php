@@ -34,8 +34,8 @@ class ControllerPemain extends CI_Controller
     }
 
     public function insert_pemain()
-    {   
-        
+    {
+
         $this->load->view('header');
         $this->load->view('pemain/formPemain');
         $this->load->view('footer');
@@ -50,14 +50,13 @@ class ControllerPemain extends CI_Controller
             'tinggi_badan'  => $this->input->post("tinggi_badan"),
             'berat_badan'   => $this->input->post("berat_badan"),
             'umur'          => $this->input->post("umur"),
-  
-          ];
-  
-          $this->PemainModel->insert_pemain($data);
-  
-          $this->session->set_flashdata("flash_message", "Berhasil tambah data musim.");
-          redirect(site_url("ControllerPemain"));
-       
+
+        ];
+        // dd($data);
+        $this->PemainModel->insert_pemain($data);
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data Berhasil Ditambahkan</div>');
+        redirect('ControllerPemain');
     }
 
     public function statistik_pemain($nisn)
@@ -69,7 +68,7 @@ class ControllerPemain extends CI_Controller
 
     public function edit_pemain($id_pemain)
     {
-        
+
         $this->db->where('id_pemain', $id_pemain);
         $pemain = $this->db->get("pemain")->row();
         $data = [
@@ -92,7 +91,7 @@ class ControllerPemain extends CI_Controller
             'tinggi_badan'  => $this->input->post("tinggi_badan"),
             'berat_badan'   => $this->input->post("berat_badan"),
             'umur'          => $this->input->post("umur"),
-  
+
         ];
 
         $this->PemainModel->update_pemain($id_pemain, $data);
@@ -107,7 +106,7 @@ class ControllerPemain extends CI_Controller
         $data_pemain = $this->PemainModel->get_by_id($id_pemain);
         if ($data_pemain) {
             $this->PemainModel->delete_pemain($id_pemain);
-            $this->session->set_flashdata("flash_message", "Berhasil hapus data Pemain.");
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Berhasil Hapus Pemain</div>');
             redirect(site_url("ControllerPemain"));
         } else {
             $this->session->set_flashdata("error_message", "Gagal hapus data Pemain.");

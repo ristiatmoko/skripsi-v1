@@ -1,4 +1,3 @@
-
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.4/css/buttons.dataTables.min.css">
 <section class="content">
@@ -12,7 +11,7 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                         <div class="col-md-12">
-                            
+
                             <div class="table-responsive">
                                 <table id="mytable" class="table table-striped">
                                     <thead>
@@ -24,13 +23,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach($nilaiS as $i => $row): ?>
-                                        <tr>
-                                            <td><?= $i+1 ?></td>
-                                            <td><?= $row->nama_lengkap ?></td>
-                                            <td><?= $row->s ?></td>
-                                            <td><?= $row->v ?></td>
-                                        </tr>
+                                        <?php $no = 1; ?>
+                                        <?php foreach ($nilaiS as $i => $row) : ?>
+                                            <tr>
+                                                <td><?= $no++; ?></td>
+                                                <td><?= $row->nama_lengkap ?></td>
+                                                <td><?= $row->s ?></td>
+                                                <td><?= $row->v ?></td>
+                                            </tr>
                                         <?php endforeach; ?>
                                     </tbody>
                                 </table>
@@ -49,10 +49,10 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-        let t = $('#mytable').DataTable( {
+        let t = $('#mytable').DataTable({
             lengthChange: false,
-            buttons: [ 'copy', 'excel', 'pdf', 'colvis' ]
-        } );
-        t.buttons().container().insertBefore( '#mytable_filter' );
+            buttons: ['copy', 'excel', 'pdf', 'colvis'],
+        });
+        t.buttons().container().insertBefore('#mytable_filter');
     });
 </script>

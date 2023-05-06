@@ -1,15 +1,17 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class PertandinganModel extends CI_Model {
-    
+class PertandinganModel extends CI_Model
+{
+
     // datatables
-    function json() {
-    //   $this->db->select('id_pertandingan, pertandingan.id_musim, versus, tanggal');
-      $this->db->join("musim", "pertandingan.id_musim = musim.id_musim");
-      $query = $this->db->get('pertandingan');
-      return $query->result();
-        if(!empty($id_musim)) {   
+    function json()
+    {
+        //   $this->db->select('id_pertandingan, pertandingan.id_musim, versus, tanggal');
+        $this->db->join("musim", "pertandingan.id_musim = musim.id_musim");
+        $query = $this->db->get('pertandingan');
+        return $query->result();
+        if (!empty($id_musim)) {
             $this->db->where("pertandingan.id_musim", $id_musim);
         }
 
@@ -27,10 +29,10 @@ class PertandinganModel extends CI_Model {
         return $this->db->get("pertandingan")->row();
     }
 
-    function update_musim($id_musim, $data)
+    function update_pertandingan($id_pertandingan, $data)
     {
-        $this->db->where("id_musim", $id_musim);
-        $this->db->update("musim", $data);
+        $this->db->where("id_pertandingan", $id_pertandingan);
+        $this->db->update("pertandingan", $data);
     }
 
     function hapus_pertandingan($id_pertandingan)

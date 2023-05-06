@@ -8,14 +8,13 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <form class="form-material form-horizontal" method="POST" action="<?= base_url('controllerKriteria/edit_kriteria_action/'.$kriteria->id_kriteria) ?>" 
-                            enctype="multipart/form-data">
+                        <form class="form-material form-horizontal" method="POST" action="<?= base_url('controllerKriteria/edit_kriteria_action/' . $kriteria->id_kriteria) ?>" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-3">
                                     <div class="form-group">
                                         <label for="bobot_preferensi">Bobot Preferensi</span>
                                         </label>
-                                        <input type="text" id="bobot_preferensi" name="bobot_preferensi" class="form-control" placeholder="Ketikkan Bobot Preferensi" required>
+                                        <input type="text" id="bobot_preferensi" name="bobot_preferensi" class="form-control" value="<?= $kriteria->bobot_preferensi ?>" placeholder=" Ketikkan Bobot Preferensi" required>
                                         <span class="text-danger"><?= form_error('bobot_preferensi') ?></span>
                                     </div>
                                 </div>
@@ -23,7 +22,7 @@
                                     <div class="form-group">
                                         <label for="nama_kriteria">Nama Kriteria</span>
                                         </label>
-                                        <input type="text" id="nama_kriteria" name="nama_kriteria" class="form-control" placeholder="Ketikkan Nama Kriteria" required>
+                                        <input type="text" id="nama_kriteria" name="nama_kriteria" class="form-control" value="<?= $kriteria->nama_kriteria ?>" placeholder="Ketikkan Nama Kriteria" required>
                                         <span class="text-danger"><?= form_error('nama_kriteria') ?></span>
                                     </div>
                                 </div>
@@ -31,7 +30,7 @@
                                     <div class="form-group">
                                         <label for="bobot_kepentingan">Bobot Kepentingan</span>
                                         </label>
-                                        <input type="number" id="bobot_kepentingan" name="bobot_kepentingan" class="form-control" placeholder="Ketikkan Bobot Kepentingan" required>
+                                        <input type="number" id="bobot_kepentingan" name="bobot_kepentingan" class="form-control" value="<?= $kriteria->bobot_kepentingan ?>" placeholder="Ketikkan Bobot Kepentingan" required>
                                         <span class="text-danger"><?= form_error('bobot_kepentingan') ?></span>
                                     </div>
                                 </div>
@@ -39,8 +38,8 @@
                                     <div class="form-group">
                                         <label for="tipe">Tipe</span>
                                         </label>
-                                        <select class="form-control" name="tipe" required>
-                                            <option value="" selected>--Pilih--</option>
+                                        <select class="form-control" name="tipe" value="<?= $kriteria->tipe ?>" required>
+                                            <option value="<?= $kriteria->tipe ?>" selected>--Pilih--</option>
                                             <option value="Benefit">Benefit</option>
                                             <option value="Cost">Cost</option>
                                         </select>

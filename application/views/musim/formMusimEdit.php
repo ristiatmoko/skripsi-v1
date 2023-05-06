@@ -8,8 +8,7 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <form class="form-material form-horizontal" method="POST" action="<?= base_url('ControllerMusim/edit_musim_action/'.$musim->id_musim) ?>" 
-                            enctype="multipart/form-data">
+                        <form class="form-material form-horizontal" method="POST" action="<?= base_url('ControllerMusim/edit_musim_action/' . $musim->id_musim) ?>" enctype="multipart/form-data">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="col-md-12" for="musim">Musim</span>

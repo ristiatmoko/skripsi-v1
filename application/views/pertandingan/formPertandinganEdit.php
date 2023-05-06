@@ -8,8 +8,7 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <form class="form-material form-horizontal" method="POST" action="<?= base_url('ControllerPertandingan/insert_pertandingan_action') ?>"
-                            enctype="multipart/form-data">
+                        <form class="form-material form-horizontal" method="POST" action="<?= base_url('ControllerPertandingan/update_pertandingan_action/' . $pertandingan->id_pertandingan) ?>" enctype="multipart/form-data">
                             <div class="col-md-6">
                                 <div class="col-md-12">
                                     <div class="row">
@@ -19,7 +18,7 @@
                                             <select name="id_musim" id="id_musim" class="form-control" required>
                                                 <option value="" disabled selected>--Pilih--</option>
                                                 <?php foreach ($musim as $value) { ?>
-                                                    <option value="<?= $value['id_musim'] ?>"><?= $value['musim'] ?></option>
+                                                    <option value="<?= $value->id_musim ?>"><?= $value->musim ?></option>
                                                 <?php } ?>
                                             </select>
                                         </div>
@@ -39,7 +38,7 @@
                                     <label class="col-md-12" for="tanggal">Tanggal</span>
                                     </label>
                                     <div class="col-md-12">
-                                        <input type="date" id="tanggal" name="tanggal" class="form-control" value="<?= $pertandingan->tanggal ?>"  placeholder="Ketikkan tanggal" required>
+                                        <input type="date" id="tanggal" name="tanggal" class="form-control" value="<?= $pertandingan->tanggal ?>" placeholder="Ketikkan tanggal" required>
                                         <span class="text-danger"><?= form_error('tanggal') ?></span>
                                     </div>
                                 </div>
